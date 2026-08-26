@@ -1,0 +1,214 @@
+import { FC, useState } from 'react';
+import {
+  Flex,
+  Menu,
+  MenuProps,
+  Drawer,
+  Button,
+  theme,
+  Select,
+  SelectProps,
+} from 'antd';
+import {
+  MenuOutlined,
+  BookOutlined,
+  ApartmentOutlined,
+  FileDoneOutlined,
+  SettingOutlined,
+} from '@ant-design/icons';
+import styled from 'styled-components';
+
+import { type AcademicYear } from '@/types';
+import { useTranslation } from '@/hooks';
+import { useAppSelector } from '@/store/hooks';
+import { selectIsDarkMode } from '@/store';
+
+const HeaderContainer = styled(Flex)<{
+  $primaryColor: string;
+  $textColor: string;
+}>`
+  padding: 0 20px;
+  background-color: ${(props) => props.$primaryColor};
+  color: ${(props) => props.$textColor};
+  min-height: 52px;
+  width: 100%;
+  box-sizing: border-box;
+  align-items: center;
+`;
+
+const StyledSelect = styled(Select)`
+  @media (max-width: 890px) {
+    display: none;
+  }
+`;
+
+const StyledMenu = styled(Menu)<{
+  $textColor: string;
+}>`
+  padding-bottom: 5px;
+  background: transparent;
+  flex: 1;
+  min-width: 0;
+  justify-content: flex-end;
+
+  &.ant-menu,
+  &.ant-menu-horizontal {
+    border-bottom: none !important;
+  }
+
+  &.ant-menu-horizontal::before,
+  &.ant-menu-horizontal::after {
+    display: none !important;
+  }
+
+  @media (max-width: 890px) {
+    display: none;
+  }
+
+  li.ant-menu-item,
+  div.ant-menu-submenu-title {
+    background-color: transparent;
+    color: ${(props) => props.$textColor} !important;
+  }
+
+  li.ant-menu-item-selected::after {
+    border-bottom-color: ${(props) => props.$textColor} !important;
+  }
+
+  li.ant-menu-item-active::after {
+    border-bottom-color: ${(props) => props.$textColor} !important;
+  }
+`;
+
+const MobileMenu = styled(Flex)`
+  display: none;
+
+  @media (max-width: 890px) {
+    display: flex;
+  }
+`;
+
+type HeaderProps = {
+  selectedKey: string;
+  setSelectedKey: (keys: string) => void;
+  availableSemesters: AcademicYear;
+  selectedSemester: string;
+  setSelectedSemester: (semester: string) => void;
+};
+
+const SectionHeader: FC<HeaderProps> = ({
+  selectedKey,
+  setSelectedKey,
+  availableSemesters,
+  selectedSemester,
+  setSelectedSemester,
+}) => {
+  const { t } = useTranslation();
+  const isDarkMode = useAppSelector(selectIsDarkMode);
+  const { token } = theme.useToken();
+  const primaryColor = isDarkMode ? token.colorBgContainer : token.colorPrimary;
+  const textColor = isDarkMode ? token.colorText : '#ffffff';
+
+  const [drawerOpen, setDrawerOpen] = useState(false);
+  const navTabs: MenuProps['items'] = [
+    {
+      key: 'allCourses',
+      label: t('allCourses'),
+      icon: <BookOutlined />,
+    },
+    {
+      key: 'departmentCourses',
+      label: t('departmentCourses'),
+      icon: <ApartmentOutlined />,
+    },
+    {
+      key: 'selectedExport',
+      label: t('selectedExportTab'),
+      icon: <FileDoneOutlined />,
+    },
+    {
+      key: 'settings',
+      label: t('settings.title'),
+      icon: <SettingOutlined />,
+    },
+  ];
+
+  const semesterCodeMap: Record<number, string> = {
+    1: t('semester.fall'),
+    2: t('semester.spring'),
+    3: t('semester.summer'),
+  };
+
+  const semesterOptions: SelectProps['options'] = Object.keys(
+    availableSemesters.history,
+  )
+    .sort((a, b) => b.localeCompare(a))
+    .map((year) => ({
+      key: year,
+      label: `${year.slice(0, -1)} ${semesterCodeMap[parseInt(year.slice(-1)) as 1 | 2 | 3]}`,
+      value: year,
+    }));
+
+  const handleMenuClick = (e: { key: string }) => {
+    setSelectedKey(e.key);
+    setDrawerOpen(false);
+  };
+
+  return (
+    <>
+      <HeaderContainer
+        $primaryColor={primaryColor}
+        $textColor={textColor}
+        justify={'space-between'}
+      >
+        <Flex align={'center'} justify={'center'}>
+          <StyledSelect
+            value={selectedSemester === '' ? t('loading') : selectedSemester}
+            onChange={(value) => setSelectedSemester(value as string)}
+            options={semesterOptions}
+            loading={!semesterOptions.length}
+            style={{ width: 120 }}
+          />
+        </Flex>
+        <StyledMenu
+          $textColor={textColor}
+          mode='horizontal'
+          items={navTabs}
+          selectedKeys={[selectedKey]}
+          onClick={handleMenuClick}
+        />
+        <MobileMenu align={'center'} justify={'center'}>
+          <Button
+            ghost={!isDarkMode}
+            icon={<MenuOutlined />}
+            onClick={() => setDrawerOpen(true)}
+          />
+        </MobileMenu>
+      </HeaderContainer>
+      <Drawer
+        title={t('selectorHelper')}
+        placement='left'
+        onClose={() => setDrawerOpen(false)}
+        open={drawerOpen}
+      >
+        <Flex vertical={true} gap={20}>
+          <Select
+            value={selectedSemester === '' ? t('loading') : selectedSemester}
+            onChange={(value) => setSelectedSemester(value)}
+            options={semesterOptions}
+            loading={!semesterOptions.length}
+            style={{ width: '100%' }}
+          />
+          <Menu
+            mode='vertical'
+            items={navTabs}
+            selectedKeys={[selectedKey]}
+            onClick={handleMenuClick}
+          />
+        </Flex>
+      </Drawer>
+    </>
+  );
+};
+
+export default SectionHeader;

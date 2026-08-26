@@ -1,0 +1,368 @@
+
+<!-- saved from url=(0046)https://cousel.ttu.edu.tw/main/ListGeneral.php -->
+<html lang="zh-TW"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta http-equiv="Expires" content="Tue, 01 Jan 1980 1:00:00 GMT">
+<meta http-equiv="Pragma" content="no-cache">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.6">
+<link href="./通識課程_files/bootstrap.min.css" rel="stylesheet">
+<script src="./通識課程_files/bootstrap.bundle.min.js.下載"></script>
+<script src="./通識課程_files/jquery.min.js.下載"></script>
+<link rel="stylesheet" title="CISstyle" href="./通識課程_files/mis.css" type="text/css">
+<link rel="stylesheet" title="CISstyle" href="./通識課程_files/exw.css" type="text/css">
+<title>大同大學選課系統</title>
+<script type="text/javascript">
+<!--
+function confirmation(DspMsg, PassArg) {
+var name = confirm(DspMsg)
+    if (name == true) {
+		location=PassArg;
+    }
+}
+-->
+</script></head>
+
+<body>
+<div class="logo" style="text-align:center;padding:6px 0;">
+<a href="https://cousel.ttu.edu.tw/seltop.php">
+<img src="./通識課程_files/sel_logo.png" height="28">
+</a>
+</div>
+
+<div class="navmenu" style="padding:2px;font-size:14px;">
+  <div class="nav_wrapper">
+    <ul>  
+	<li><a href="https://cousel.ttu.edu.tw/main/ListGeneral.php#"><img src="./通識課程_files/action.png" height="30"></a>
+        <ul>
+        <li><a href="https://cousel.ttu.edu.tw/main/ListClassCourse.php">各班課程<br>Class Courses</a></li>
+        <li><a href="https://cousel.ttu.edu.tw/main/ListTeacher.php">全校教師課程<br>Instructor Courses</a></li>
+        <li><a href="https://cousel.ttu.edu.tw/main/ListUGRR.php">共同科目<br>Common Courses</a></li>
+        <li><a href="https://cousel.ttu.edu.tw/main/ListGeneral.php">通識課程<br>General Courses</a></li>
+        <li><a href="https://cousel.ttu.edu.tw/main/ListEngCourse.php">英語授課課程<br>Courses Taught in English </a></li>
+        <li><a href="https://cousel.ttu.edu.tw/main/ListTime.php">時段課程<br>Courses List by Time Slot</a></li>
+        <li><a href="https://cousel.ttu.edu.tw/main/FastSelect.php">快速選課<br>Quick Selection</a></li>
+        </ul>
+    </li>
+    <li><a href="https://cousel.ttu.edu.tw/main/ListGeneral.php#"><img src="./通識課程_files/mycourse.png" height="30"></a>
+        <ul>
+        <li><a href="https://cousel.ttu.edu.tw/main/ListSelected.php">已選課程<br>My Courses</a></li>
+        <li><a href="https://cousel.ttu.edu.tw/main/courseadd.php" target="_AddForm">選課加簽單<br>Course Signup Form</a></li>
+        <li><a href="https://cousel.ttu.edu.tw/main/WithdrawApp.php" target="_DropForm">期中退選申請<br>Course Withdraw Form</a></li>
+        <li><a href="https://cousel.ttu.edu.tw/main/Schedule.php">本人功課表<br>My Timetable</a></li>
+        </ul>
+    </li>
+    <li><a href="https://cousel.ttu.edu.tw/main/ListGeneral.php#"><img src="./通識課程_files/timetable.png" height="30"></a>
+        <ul>
+        <li><a href="https://cousel.ttu.edu.tw/main/ViewClass.php">班級功課表<br>Class Timetable</a></li>
+        <li><a href="https://cousel.ttu.edu.tw/main/ViewTeacher.php">教師功課表<br>Instructor Timetable</a></li>
+        <li><a href="https://cousel.ttu.edu.tw/main/ViewGeneral.php" target="_print">通識課時間表<br>General Courses Timetable</a></li>
+        <li><a href="https://cousel.ttu.edu.tw/main/ViewRoom.php" target="_blank">教室使用狀況<br>Classrooms Timetable</a></li>
+        </ul>
+    </li>
+    <li><a href="https://cousel.ttu.edu.tw/main/ListGeneral.php#"><img src="./通識課程_files/systeminfo.png" height="30"></a>
+		<ul>
+        <li><a href="https://cousel.ttu.edu.tw/docs/selhelp.php">使用說明<br>User Manual</a></li>
+        <li><a href="https://cousel.ttu.edu.tw/main/SelRecord.php">選課紀錄<br>Registration Records</a></li>
+		</ul>
+    </li>
+    <li><a href="https://cousel.ttu.edu.tw/logout.php"><img src="./通識課程_files/logout.png" height="30"></a>
+	</li>
+    </ul>
+  </div>
+</div><div class="logo">通識課程 Courses in General Education</div>
+<div style="text-align:center">
+依規定每人每學期最多只能選修兩門通識課程，欲超修者請洽課務組<br>
+<div>
+<style type="text/css">
+<!--
+.fontA {
+font-size: 0.72em;
+font-family: Arial narrow;
+}
+.fontB {
+font-size: 1em;
+font-family: Arial narrow;
+color: red;
+}
+-->
+</style>
+
+<div style="text-align:center">
+目前並非您可以選課的期間。<br>It is not the time you can enroll courses.<table class="mistab" width="98%" align="center">
+<tbody><tr style="text-align:center;">
+  <th width="60">處理<br>Action</th>
+  <th width="60">課代碼<br>Code</th>
+  <th style="text-align:left;" width="200">課程名稱<br>Course Name</th>
+  <th width="85" class="HideColB">教師<br>Instructor</th>
+  <th width="125" class="HideColB">必修/選修<br><div style="font-size:12px;">Required/Elective</div></th>
+  <th width="60">學分<br>Credit</th>
+  <th width="100" class="HideColB">已選/上限<br><div style="font-size:12px;">Enrolled/Limit</div></th>
+  <th style="text-align:left;" class="Remark">附註說明 Remark</th>
+</tr>
+<tr bgcolor="#DDEEEE" height="24"><td>&nbsp;</td><td align="center">G1240</td><td>簡報製作與表達<br><div class="fontA">BRIEFING MAKE AND EXPRESS</div></td>
+<td align="center" class="HideColB">孫貴珠</td><td align="center" class="HideColB"><span style="font-size:14px;">選修 Elective</span></td>  <td align="center">1.0</td>
+  <td align="center" class="HideColB">
+<font color="Black">16/30</font>人</td><td class="Remark"><div class="fontB">【語文通識】微型課程；優久通識，限大二以上。上課日期：9/11、9/18、10/2、10/16、10/23、10/30， 教室設備緣故調整人數上限</div></td></tr>
+<tr bgcolor="#EEEEEE" height="24"><td>&nbsp;</td><td align="center">G1350</td><td>再生能源、潔淨能源與永續發展<br><div class="fontA">RENEWABLE ENERGY CLEAN ENERGY AND SUSTAINABILITY</div></td>
+<td align="center" class="HideColB">施文欽</td><td align="center" class="HideColB"><span style="font-size:14px;">選修 Elective</span></td>  <td align="center">2.0</td>
+  <td align="center" class="HideColB">
+<font color="Black">10/55</font>人</td><td class="Remark"><div class="fontB">【自然科學】【學程型】</div></td></tr>
+<tr bgcolor="#DDEEEE" height="24"><td>&nbsp;</td><td align="center">G1540</td><td>西班牙語文與文化<br><div class="fontA">SPANISH</div></td>
+<td align="center" class="HideColB">張迺貞</td><td align="center" class="HideColB"><span style="font-size:14px;">選修 Elective</span></td>  <td align="center">2.0</td>
+  <td align="center" class="HideColB">
+<font color="Black">54/55</font>人</td><td class="Remark"><div class="fontB">【語文通識】</div></td></tr>
+<tr bgcolor="#EEEEEE" height="24"><td>&nbsp;</td><td align="center">G1570</td><td>新聞英語<br><div class="fontA">JOURNAL ENGLISH</div></td>
+<td align="center" class="HideColB">丁鴻儒</td><td align="center" class="HideColB"><span style="font-size:14px;">選修 Elective</span></td>  <td align="center">2.0</td>
+  <td align="center" class="HideColB">
+<font color="Black">46/55</font>人</td><td class="Remark"><div class="fontB">【語文通識】</div></td></tr>
+<tr bgcolor="#DDEEEE" height="24"><td>&nbsp;</td><td align="center">G1580</td><td>用AI自主學英文<br><div class="fontA">AI-ASSISTED ENGLISH LEARNING</div></td>
+<td align="center" class="HideColB">吳哲硯</td><td align="center" class="HideColB"><span style="font-size:14px;">選修 Elective</span></td>  <td align="center">1.0</td>
+  <td align="center" class="HideColB">
+<font color="Red">40/40</font>人</td><td class="Remark"><div class="fontB">【語文通識】微型課程。上課時間：第1~8週+第17週，教室設備緣故調整人數上限</div></td></tr>
+<tr bgcolor="#EEEEEE" height="24"><td>&nbsp;</td><td align="center">G1590</td><td>實用英文<br><div class="fontA">PRACTICAL ENGLISH</div></td>
+<td align="center" class="HideColB">丁鴻儒</td><td align="center" class="HideColB"><span style="font-size:14px;">選修 Elective</span></td>  <td align="center">2.0</td>
+  <td align="center" class="HideColB">
+<font color="Red">55/55</font>人</td><td class="Remark"><div class="fontB">【語文通識】</div></td></tr>
+<tr bgcolor="#DDEEEE" height="24"><td>&nbsp;</td><td align="center">G1613A</td><td>日語(三)<br><div class="fontA">JAPANESE</div></td>
+<td align="center" class="HideColB">林芷苓</td><td align="center" class="HideColB"><span style="font-size:14px;">選修 Elective</span></td>  <td align="center">2.0</td>
+  <td align="center" class="HideColB">
+<font color="Red">55/55</font>人</td><td class="Remark"><div class="fontB">【語文通識】應外系及修過設計日語(一)者，請勿選修。</div></td></tr>
+<tr bgcolor="#EEEEEE" height="24"><td>&nbsp;</td><td align="center">G1615A</td><td>日語(五)<br><div class="fontA">JAPANESE</div></td>
+<td align="center" class="HideColB">李慧莉</td><td align="center" class="HideColB"><span style="font-size:14px;">選修 Elective</span></td>  <td align="center">2.0</td>
+  <td align="center" class="HideColB">
+<font color="Black">51/55</font>人</td><td class="Remark"><div class="fontB">【語文通識】應外系請勿選修。</div></td></tr>
+<tr bgcolor="#DDEEEE" height="24"><td>&nbsp;</td><td align="center">G2040</td><td>經營概論<br><div class="fontA">INTRODUCTION TO MANAGEMENT</div></td>
+<td align="center" class="HideColB">張三祝</td><td align="center" class="HideColB"><span style="font-size:14px;">選修 Elective</span></td>  <td align="center">2.0</td>
+  <td align="center" class="HideColB">
+<font color="Black">11/55</font>人</td><td class="Remark"><div class="fontB">【社會科學】優久通識；事資(事經)系請勿選修</div></td></tr>
+<tr bgcolor="#EEEEEE" height="24"><td>&nbsp;</td><td align="center">G2270</td><td>古典文學與人文涵養<br><div class="fontA">CONTEMPORARY LITERATURE APPRECIATION AND CREATION</div></td>
+<td align="center" class="HideColB">陳翔羚</td><td align="center" class="HideColB"><span style="font-size:14px;">選修 Elective</span></td>  <td align="center">2.0</td>
+  <td align="center" class="HideColB">
+<font color="Red">55/55</font>人</td><td class="Remark"><div class="fontB">【語文通識】</div></td></tr>
+<tr bgcolor="#DDEEEE" height="24"><td>&nbsp;</td><td align="center">G2280</td><td>電影與文化<br><div class="fontA">FILM AND CULTURE</div></td>
+<td align="center" class="HideColB">孫貴珠</td><td align="center" class="HideColB"><a name="LN13"><span style="font-size:14px;">選修 Elective</span></a></td>  <td align="center">2.0</td>
+  <td align="center" class="HideColB">
+<font color="Red">55/55</font>人</td><td class="Remark"><div class="fontB">【人文與藝術】大二(含)以上；優久通識</div></td></tr>
+<tr bgcolor="#EEEEEE" height="24"><td>&nbsp;</td><td align="center">G2290</td><td>流行的古典音樂<br><div class="fontA">THE POP-CLASSICAL MUSIC</div></td>
+<td align="center" class="HideColB">李韋翰</td><td align="center" class="HideColB"><a name="LN14"><span style="font-size:14px;">選修 Elective</span></a></td>  <td align="center">2.0</td>
+  <td align="center" class="HideColB">
+<font color="Red">55/55</font>人</td><td class="Remark"><div class="fontB">【人文與藝術】</div></td></tr>
+<tr bgcolor="#DDEEEE" height="24"><td>&nbsp;</td><td align="center">G2540</td><td>孫子兵法與商業個案解析<br><div class="fontA">SUN TZU THE ART OF WAR &amp; CASE ANALYSIS OF TRADE WAR</div></td>
+<td align="center" class="HideColB">張孝武</td><td align="center" class="HideColB"><a name="LN15"><span style="font-size:14px;">選修 Elective</span></a></td>  <td align="center">2.0</td>
+  <td align="center" class="HideColB">
+<font color="Red">55/55</font>人</td><td class="Remark"><div class="fontB">【社會科學】</div></td></tr>
+<tr bgcolor="#EEEEEE" height="24"><td>&nbsp;</td><td align="center">G2620</td><td>臺灣南島語言與文化概論<br><div class="fontA">INTRODUCTION TO FORMOSAN LANGUAGES AND CULTURES</div></td>
+<td align="center" class="HideColB">謝富惠</td><td align="center" class="HideColB"><a name="LN16"><span style="font-size:14px;">選修 Elective</span></a></td>  <td align="center">2.0</td>
+  <td align="center" class="HideColB">
+<font color="Black">54/55</font>人</td><td class="Remark"><div class="fontB">【語文通識/人文與藝術】</div></td></tr>
+<tr bgcolor="#DDEEEE" height="24"><td>&nbsp;</td><td align="center">G2680</td><td>經濟學概論<br><div class="fontA">ECONOMICS SCIENCE</div></td>
+<td align="center" class="HideColB">陳美芳</td><td align="center" class="HideColB"><a name="LN17"><span style="font-size:14px;">選修 Elective</span></a></td>  <td align="center">2.0</td>
+  <td align="center" class="HideColB">
+<font color="Black">33/55</font>人</td><td class="Remark"><div class="fontB">【社會科學】事資(事經)系請勿選修</div></td></tr>
+<tr bgcolor="#EEEEEE" height="24"><td>&nbsp;</td><td align="center">G2720A</td><td>園藝植物入門與實作<br><div class="fontA">HORTICULTURE PLANTS:PRINCIPLES AND PRACTICES</div></td>
+<td align="center" class="HideColB">何錦玟</td><td align="center" class="HideColB"><a name="LN18"><span style="font-size:14px;">選修 Elective</span></a></td>  <td align="center">2.0</td>
+  <td align="center" class="HideColB">
+<font color="Red">55/55</font>人</td><td class="Remark"><div class="fontB">【自然科學】服務學習課程</div></td></tr>
+<tr bgcolor="#DDEEEE" height="24"><td>&nbsp;</td><td align="center">G2720B</td><td>園藝植物入門與實作<br><div class="fontA">HORTICULTURE PLANTS:PRINCIPLES AND PRACTICES</div></td>
+<td align="center" class="HideColB">何錦玟</td><td align="center" class="HideColB"><a name="LN19"><span style="font-size:14px;">選修 Elective</span></a></td>  <td align="center">2.0</td>
+  <td align="center" class="HideColB">
+<font color="Red">55/55</font>人</td><td class="Remark"><div class="fontB">【自然科學】服務學習課程</div></td></tr>
+<tr bgcolor="#EEEEEE" height="24"><td>&nbsp;</td><td align="center">G2740</td><td>健康教育<br><div class="fontA">HEALTH EDUCATION</div></td>
+<td align="center" class="HideColB">顏聰榮</td><td align="center" class="HideColB"><a name="LN20"><span style="font-size:14px;">選修 Elective</span></a></td>  <td align="center">2.0</td>
+  <td align="center" class="HideColB">
+<font color="Red">55/55</font>人</td><td class="Remark"><div class="fontB">【自然科學】</div></td></tr>
+<tr bgcolor="#DDEEEE" height="24"><td>&nbsp;</td><td align="center">G2790</td><td>性別關係<br><div class="fontA">SEX ROLES AND SEXUAL HEALTH</div></td>
+<td align="center" class="HideColB">呂宗哲</td><td align="center" class="HideColB"><a name="LN21"><span style="font-size:14px;">選修 Elective</span></a></td>  <td align="center">2.0</td>
+  <td align="center" class="HideColB">
+<font color="Red">55/55</font>人</td><td class="Remark"><div class="fontB">【社會科學】</div></td></tr>
+<tr bgcolor="#EEEEEE" height="24"><td>&nbsp;</td><td align="center">G2850</td><td>多元視野的藝術觀<br><div class="fontA">MULTIPLE PERSPECTIVES ON ART APPRECIATION</div></td>
+<td align="center" class="HideColB">黃淑卿</td><td align="center" class="HideColB"><a name="LN22"><span style="font-size:14px;">選修 Elective</span></a></td>  <td align="center">2.0</td>
+  <td align="center" class="HideColB">
+<font color="Red">55/55</font>人</td><td class="Remark"><div class="fontB">【人文與藝術】優久通識</div></td></tr>
+<tr bgcolor="#DDEEEE" height="24"><td>&nbsp;</td><td align="center">G3090</td><td>從電影認識組織變革<br><div class="fontA">UNDERSTANDING ORGANIZATIONAL CHANGE FROM MOVIES</div></td>
+<td align="center" class="HideColB">劉哲豪</td><td align="center" class="HideColB"><a name="LN23"><span style="font-size:14px;">選修 Elective</span></a></td>  <td align="center">2.0</td>
+  <td align="center" class="HideColB">
+<font color="Red">55/55</font>人</td><td class="Remark"><div class="fontB">【社會科學】</div></td></tr>
+<tr bgcolor="#EEEEEE" height="24"><td>&nbsp;</td><td align="center">G3130</td><td>音樂劇選粹<br><div class="fontA">THE BEST CHOICE OF MUSICAL PLAY</div></td>
+<td align="center" class="HideColB">孫貴珠</td><td align="center" class="HideColB"><a name="LN24"><span style="font-size:14px;">選修 Elective</span></a></td>  <td align="center">2.0</td>
+  <td align="center" class="HideColB">
+<font color="Red">55/55</font>人</td><td class="Remark"><div class="fontB">【人文與藝術】</div></td></tr>
+<tr bgcolor="#DDEEEE" height="24"><td>&nbsp;</td><td align="center">G3240</td><td>西洋歌劇欣賞入門<br><div class="fontA">INTRODUCTION OF THE WESTERN OPERA APPRECIATION</div></td>
+<td align="center" class="HideColB">王淑堯</td><td align="center" class="HideColB"><a name="LN25"><span style="font-size:14px;">選修 Elective</span></a></td>  <td align="center">2.0</td>
+  <td align="center" class="HideColB">
+<font color="Red">55/55</font>人</td><td class="Remark"><div class="fontB">【人文與藝術】</div></td></tr>
+<tr bgcolor="#EEEEEE" height="24"><td>&nbsp;</td><td align="center">G3250</td><td>法律實務<br><div class="fontA">LAW</div></td>
+<td align="center" class="HideColB">林建宏</td><td align="center" class="HideColB"><a name="LN26"><span style="font-size:14px;">選修 Elective</span></a></td>  <td align="center">2.0</td>
+  <td align="center" class="HideColB">
+<font color="Black">23/55</font>人</td><td class="Remark"><div class="fontB">【社會科學】</div></td></tr>
+<tr bgcolor="#DDEEEE" height="24"><td>&nbsp;</td><td align="center">G3310</td><td>音樂與文化<br><div class="fontA">MUSIC AND CULTURE</div></td>
+<td align="center" class="HideColB">涂菀凌</td><td align="center" class="HideColB"><a name="LN27"><span style="font-size:14px;">選修 Elective</span></a></td>  <td align="center">2.0</td>
+  <td align="center" class="HideColB">
+<font color="Black">53/55</font>人</td><td class="Remark"><div class="fontB">【人文與藝術】優久通識</div></td></tr>
+<tr bgcolor="#EEEEEE" height="24"><td>&nbsp;</td><td align="center">G3530</td><td>觀光法語及法國文化<br><div class="fontA">TOURISM FRENCH AND FRENCH CULTURE</div></td>
+<td align="center" class="HideColB">林書劍</td><td align="center" class="HideColB"><a name="LN28"><span style="font-size:14px;">選修 Elective</span></a></td>  <td align="center">2.0</td>
+  <td align="center" class="HideColB">
+<font color="Black">27/55</font>人</td><td class="Remark"><div class="fontB">【語文通識】</div></td></tr>
+<tr bgcolor="#DDEEEE" height="24"><td>&nbsp;</td><td align="center">G3610</td><td>品味行銷<br><div class="fontA">MARKETING FOR STYLISTIC QUALITY</div></td>
+<td align="center" class="HideColB">陳仕成</td><td align="center" class="HideColB"><a name="LN29"><span style="font-size:14px;">選修 Elective</span></a></td>  <td align="center">2.0</td>
+  <td align="center" class="HideColB">
+<font color="Black">30/55</font>人</td><td class="Remark"><div class="fontB">【社會科學/人文與藝術】</div></td></tr>
+<tr bgcolor="#EEEEEE" height="24"><td>&nbsp;</td><td align="center">G4030</td><td>越南語言與文化<br><div class="fontA">VIETNAMESE LANGUAGE AND CULTURE</div></td>
+<td align="center" class="HideColB">范垂玲</td><td align="center" class="HideColB"><a name="LN30"><span style="font-size:14px;">選修 Elective</span></a></td>  <td align="center">2.0</td>
+  <td align="center" class="HideColB">
+<font color="Red">55/55</font>人</td><td class="Remark"><div class="fontB">【語文通識】</div></td></tr>
+<tr bgcolor="#DDEEEE" height="24"><td>&nbsp;</td><td align="center">G4080</td><td>日本文化與生活<br><div class="fontA">JAPANESE CULTURE AND LIFE</div></td>
+<td align="center" class="HideColB">覃顯勇</td><td align="center" class="HideColB"><a name="LN31"><span style="font-size:14px;">選修 Elective</span></a></td>  <td align="center">2.0</td>
+  <td align="center" class="HideColB">
+<font color="Red">55/55</font>人</td><td class="Remark"><div class="fontB">【人文與藝術】</div></td></tr>
+<tr bgcolor="#EEEEEE" height="24"><td>&nbsp;</td><td align="center">G4220</td><td>創造力激發<br><div class="fontA">STIMULATION OF CREATIVITY</div></td>
+<td align="center" class="HideColB">楊承亮</td><td align="center" class="HideColB"><a name="LN32"><span style="font-size:14px;">選修 Elective</span></a></td>  <td align="center">2.0</td>
+  <td align="center" class="HideColB">
+<font color="Black">20/45</font>人</td><td class="Remark"><div class="fontB">【人文與藝術】 教室設備緣故調整人數上限</div></td></tr>
+<tr bgcolor="#DDEEEE" height="24"><td>&nbsp;</td><td align="center">G4410</td><td>AI未來應用與趨勢探索<br><div class="fontA">XPLORING EMERGING AI APPLICATIONS AND TRENDS</div></td>
+<td align="center" class="HideColB">李尚林</td><td align="center" class="HideColB"><a name="LN33"><span style="font-size:14px;">選修 Elective</span></a></td>  <td align="center">2.0</td>
+  <td align="center" class="HideColB">
+<font color="Black">54/55</font>人</td><td class="Remark"><div class="fontB">【自然科學/社會科學】講座課程</div></td></tr>
+<tr bgcolor="#EEEEEE" height="24"><td>&nbsp;</td><td align="center">G4460</td><td>數位自造者<br><div class="fontA">DIGITAL MAKER</div></td>
+<td align="center" class="HideColB">鄭穎懋</td><td align="center" class="HideColB"><a name="LN34"><span style="font-size:14px;">選修 Elective</span></a></td>  <td align="center">2.0</td>
+  <td align="center" class="HideColB">
+<font color="Black">31/35</font>人</td><td class="Remark"><div class="fontB">【自然科學】 課程性質緣故調整人數上限</div></td></tr>
+<tr bgcolor="#DDEEEE" height="24"><td>&nbsp;</td><td align="center">G4480</td><td>基礎程式設計<br><div class="fontA">BASIC COMPUTER PROGRAMMING</div></td>
+<td align="center" class="HideColB">包蒼龍</td><td align="center" class="HideColB"><a name="LN35"><span style="font-size:14px;">選修 Elective</span></a></td>  <td align="center">0.0</td>
+  <td align="center" class="HideColB">
+<font color="Black">15/55</font>人</td><td class="Remark"><div class="fontB">【自然科學】微型課程；限無開設「邏輯運算及程式設計」課程之學系學生選修；實際授課時間請見網路大學說明</div></td></tr>
+<tr bgcolor="#EEEEEE" height="24"><td>&nbsp;</td><td align="center">G4514</td><td>地區關懷與生命實踐(四)<br><div class="fontA">REGIONAL CARING AND LIFE PRACTICING</div></td>
+<td align="center" class="HideColB">李懿純</td><td align="center" class="HideColB"><a name="LN36"><span style="font-size:14px;">選修 Elective</span></a></td>  <td align="center">1.0</td>
+  <td align="center" class="HideColB">
+<font color="Black">28/30</font>人</td><td class="Remark"><div class="fontB">【認可任一領域】微型課程，時間為10/17、18六日整天授課，地點於網路大學公告，課程性質緣故調整人數上限</div></td></tr>
+<tr bgcolor="#DDEEEE" height="24"><td>&nbsp;</td><td align="center">G4560</td><td>手機APP程式設計<br><div class="fontA">MOBILE APP PROGRAMMING</div></td>
+<td align="center" class="HideColB">鄭福炯</td><td align="center" class="HideColB"><a name="LN37"><span style="font-size:14px;">選修 Elective</span></a></td>  <td align="center">2.0</td>
+  <td align="center" class="HideColB">
+<font color="Black">26/45</font>人</td><td class="Remark"><div class="fontB">【自然科學】 教室設備緣故調整人數上限。</div></td></tr>
+<tr bgcolor="#EEEEEE" height="24"><td>&nbsp;</td><td align="center">G4680</td><td>全球議題敘事創作<br><div class="fontA">GLOBAL ISSUES AND NARRATIVE CREATION</div></td>
+<td align="center" class="HideColB">趙琇芬</td><td align="center" class="HideColB"><a name="LN38"><span style="font-size:14px;">選修 Elective</span></a></td>  <td align="center">2.0</td>
+  <td align="center" class="HideColB">
+<font color="Black">20/30</font>人</td><td class="Remark"><div class="fontB">【語文通識】；雙師全程參與課程，課程性質緣故調整人數上限</div></td></tr>
+<tr bgcolor="#DDEEEE" height="24"><td>&nbsp;</td><td align="center">G4700</td><td>工商心理學<br><div class="fontA">INDUSTRIAL AND ORGANIZATIONAL PSYCHOLOGY</div></td>
+<td align="center" class="HideColB">王介宙</td><td align="center" class="HideColB"><a name="LN39"><span style="font-size:14px;">選修 Elective</span></a></td>  <td align="center">2.0</td>
+  <td align="center" class="HideColB">
+<font color="Black">45/55</font>人</td><td class="Remark"><div class="fontB">【社會科學】優久通識</div></td></tr>
+<tr bgcolor="#EEEEEE" height="24"><td>&nbsp;</td><td align="center">G4716</td><td>連結臺灣(六)<br><div class="fontA">CONNECTING TAIWAN</div></td>
+<td align="center" class="HideColB">包蒼龍</td><td align="center" class="HideColB"><a name="LN40"><span style="font-size:14px;">選修 Elective</span></a></td>  <td align="center">1.0</td>
+  <td align="center" class="HideColB">
+<font color="Red">55/55</font>人</td><td class="Remark"><div class="fontB">【自然科學】微型課程；講座課程；優久通識；9/11第一次進行課程說明</div></td></tr>
+<tr bgcolor="#DDEEEE" height="24"><td>&nbsp;</td><td align="center">G4730</td><td>大同寶寶斜槓力-多元跨域入門<br><div class="fontA">INTRODUCTION TO MULTIPLE &amp; CROSS DISCIPLINE</div></td>
+<td align="center" class="HideColB">呂易晉</td><td align="center" class="HideColB"><a name="LN41"><span style="font-size:14px;">選修 Elective</span></a></td>  <td align="center">2.0</td>
+  <td align="center" class="HideColB">
+<font color="Black">1/55</font>人</td><td class="Remark"><div class="fontB">【自然科學/社會科學】大一新生優先選課，大一學生選課結束後，開放大二以上學生選課</div></td></tr>
+<tr bgcolor="#EEEEEE" height="24"><td>&nbsp;</td><td align="center">G4750</td><td>心理衛生與輔導<br><div class="fontA">MENTAL HEALTH AND COUNSELING</div></td>
+<td align="center" class="HideColB">王威</td><td align="center" class="HideColB"><a name="LN42"><span style="font-size:14px;">選修 Elective</span></a></td>  <td align="center">2.0</td>
+  <td align="center" class="HideColB">
+<font color="Red">55/55</font>人</td><td class="Remark"><div class="fontB">【社會科學】</div></td></tr>
+<tr bgcolor="#DDEEEE" height="24"><td>&nbsp;</td><td align="center">G4770</td><td>電力與能源<br><div class="fontA">ELECTRICAL POWER AND ENERGY</div></td>
+<td align="center" class="HideColB">朱文成</td><td align="center" class="HideColB"><a name="LN43"><span style="font-size:14px;">選修 Elective</span></a></td>  <td align="center">2.0</td>
+  <td align="center" class="HideColB">
+<font color="Black">34/55</font>人</td><td class="Remark"><div class="fontB">【自然科學】優久通識</div></td></tr>
+<tr bgcolor="#EEEEEE" height="24"><td>&nbsp;</td><td align="center">G4790</td><td>漫談生活中的真「材」實「料」<br><div class="fontA">INSPIRATION AND PRACTICAL APPLICATION OF MATERIALS SCIENCE I</div></td>
+<td align="center" class="HideColB">吳錫芩</td><td align="center" class="HideColB"><a name="LN44"><span style="font-size:14px;">選修 Elective</span></a></td>  <td align="center">1.0</td>
+  <td align="center" class="HideColB">
+<font color="Black">12/55</font>人</td><td class="Remark"><div class="fontB">【自然科學】微型課程；優久通識；上課時間：第1~8週+第17週，可替代挺生學院課程「材料加工與分析」</div></td></tr>
+<tr bgcolor="#DDEEEE" height="24"><td>&nbsp;</td><td align="center">G4801</td><td>校園生活知能教育與實踐(一)<br><div class="fontA">KNOWLEDGE AND PRACTICE IN CAMPUS LIFE</div></td>
+<td align="center" class="HideColB">胡乾增</td><td align="center" class="HideColB"><a name="LN45"><span style="font-size:14px;">選修 Elective</span></a></td>  <td align="center">2.0</td>
+  <td align="center" class="HideColB">
+<font color="Red">55/55</font>人</td><td class="Remark"><div class="fontB">【社會科學】</div></td></tr>
+<tr bgcolor="#EEEEEE" height="24"><td>&nbsp;</td><td align="center">G4830</td><td>職場禮儀<br><div class="fontA">BUSINESS ETIQUETTE</div></td>
+<td align="center" class="HideColB">紀如育</td><td align="center" class="HideColB"><a name="LN46"><span style="font-size:14px;">選修 Elective</span></a></td>  <td align="center">2.0</td>
+  <td align="center" class="HideColB">
+<font color="Red">55/55</font>人</td><td class="Remark"><div class="fontB">【社會科學】</div></td></tr>
+<tr bgcolor="#DDEEEE" height="24"><td>&nbsp;</td><td align="center">G4850</td><td>職場溝通技巧與能力<br><div class="fontA">SKILL AND ABILITY OF WORKPLACE COMMUNICATION</div></td>
+<td align="center" class="HideColB">王介宙</td><td align="center" class="HideColB"><a name="LN47"><span style="font-size:14px;">選修 Elective</span></a></td>  <td align="center">2.0</td>
+  <td align="center" class="HideColB">
+<font color="Black">13/55</font>人</td><td class="Remark"><div class="fontB">【社會科學】優久通識</div></td></tr>
+<tr bgcolor="#EEEEEE" height="24"><td>&nbsp;</td><td align="center">G4870</td><td>國際移動力<br><div class="fontA">INTERNATIONAL MOBILITY</div></td>
+<td align="center" class="HideColB">朱佩文</td><td align="center" class="HideColB"><a name="LN48"><span style="font-size:14px;">選修 Elective</span></a></td>  <td align="center">1.0</td>
+  <td align="center" class="HideColB">
+<font color="Black">19/55</font>人</td><td class="Remark"><div class="fontB">【社會科學】微型課程，英語授課。上課時間：第1~8週+第17週</div></td></tr>
+<tr bgcolor="#DDEEEE" height="24"><td>&nbsp;</td><td align="center">G4880</td><td>ESG組織溫室氣體盤查、減碳及淨零<br><div class="fontA">ESG GREENHOUSE GAS INVENTORY, CARBON REDUCTION AND NET ZERO</div></td>
+<td align="center" class="HideColB">簡昭珩</td><td align="center" class="HideColB"><a name="LN49"><span style="font-size:14px;">選修 Elective</span></a></td>  <td align="center">2.0</td>
+  <td align="center" class="HideColB">
+<font color="Black">32/45</font>人</td><td class="Remark"><div class="fontB">【自然科學】【學程型】優久通識，教室設備緣故調整人數上限</div></td></tr>
+<tr bgcolor="#EEEEEE" height="24"><td>&nbsp;</td><td align="center">G4900</td><td>孫子兵法與國家安全<br><div class="fontA">SUN TZU ART OF WAR AND NATIONAL SECURITY</div></td>
+<td align="center" class="HideColB">劉德良</td><td align="center" class="HideColB"><a name="LN50"><span style="font-size:14px;">選修 Elective</span></a></td>  <td align="center">2.0</td>
+  <td align="center" class="HideColB">
+<font color="Black">54/55</font>人</td><td class="Remark"><div class="fontB">【社會科學】</div></td></tr>
+<tr bgcolor="#DDEEEE" height="24"><td>&nbsp;</td><td align="center">G4922</td><td>國際移動力與跨文化溝通(二)<br><div class="fontA">INTERNATIONAL MOBILITY AND CROSS-CULTURAL COMMUNICATION</div></td>
+<td align="center" class="HideColB">楊祝壽</td><td align="center" class="HideColB"><a name="LN51"><span style="font-size:14px;">選修 Elective</span></a></td>  <td align="center">1.0</td>
+  <td align="center" class="HideColB">
+<font color="Red">55/55</font>人</td><td class="Remark"><div class="fontB">【認可任一領域】微型課程；上課時間：第1~8週+第17週</div></td></tr>
+<tr bgcolor="#EEEEEE" height="24"><td>&nbsp;</td><td align="center">G4940</td><td>綠色防災科技<br><div class="fontA">GREEN DISASTER PREVENTION TECHNOLOGY</div></td>
+<td align="center" class="HideColB">魏宇德</td><td align="center" class="HideColB"><a name="LN52"><span style="font-size:14px;">選修 Elective</span></a></td>  <td align="center">2.0</td>
+  <td align="center" class="HideColB">
+<font color="Black">27/55</font>人</td><td class="Remark"><div class="fontB">【自然科學】【學程型】可替代挺生學院工程專業課程。優久通識</div></td></tr>
+<tr bgcolor="#DDEEEE" height="24"><td>&nbsp;</td><td align="center">G4950</td><td>ESG與永續專案思維<br><div class="fontA">SUSTAINABLE THINKING IN ESG AND PROJECT PRACTICE</div></td>
+<td align="center" class="HideColB">魏宇德</td><td align="center" class="HideColB"><a name="LN53"><span style="font-size:14px;">選修 Elective</span></a></td>  <td align="center">2.0</td>
+  <td align="center" class="HideColB">
+<font color="Black">13/55</font>人</td><td class="Remark"><div class="fontB">【自然科學】優久通識 。</div></td></tr>
+<tr bgcolor="#EEEEEE" height="24"><td>&nbsp;</td><td align="center">G4960</td><td>正念領導力<br><div class="fontA">MINDFUL LEADERSHIP</div></td>
+<td align="center" class="HideColB">梁詠貴</td><td align="center" class="HideColB"><a name="LN54"><span style="font-size:14px;">選修 Elective</span></a></td>  <td align="center">2.0</td>
+  <td align="center" class="HideColB">
+<font color="Black">10/55</font>人</td><td class="Remark"><div class="fontB">【人文與藝術】</div></td></tr>
+<tr bgcolor="#DDEEEE" height="24"><td>&nbsp;</td><td align="center">G4970</td><td>職場不法侵害、校園霸凌與性騷擾防治<br><div class="fontA">PREVENTION OF ILLEGAL VIOLATIONS, BULLYING AND SEXUAL HARASS</div></td>
+<td align="center" class="HideColB">王甲</td><td align="center" class="HideColB"><a name="LN55"><span style="font-size:14px;">選修 Elective</span></a></td>  <td align="center">2.0</td>
+  <td align="center" class="HideColB">
+<font color="Red">55/55</font>人</td><td class="Remark"><div class="fontB">【社會科學】</div></td></tr>
+<tr bgcolor="#EEEEEE" height="24"><td>&nbsp;</td><td align="center">G4980</td><td>人工智慧導論<br><div class="fontA">INTRODUCTION TO ARTIFICIAL INTELLIGENCE</div></td>
+<td align="center" class="HideColB">王頌文</td><td align="center" class="HideColB"><a name="LN56"><span style="font-size:14px;">選修 Elective</span></a></td>  <td align="center">2.0</td>
+  <td align="center" class="HideColB">
+<font color="Black">31/55</font>人</td><td class="Remark"><div class="fontB">【自然科學】</div></td></tr>
+<tr bgcolor="#DDEEEE" height="24"><td>&nbsp;</td><td align="center">Y1010</td><td>運算思維與資料科學入門<br><div class="fontA">INTRODUCTION TO COMPUTATIONAL THINKING AND DATA SCIENCE</div></td>
+<td align="center" class="HideColB">包蒼龍</td><td align="center" class="HideColB"><a name="LN57"><span style="font-size:14px;">選修 Elective</span></a></td>  <td align="center">2.0</td>
+  <td align="center" class="HideColB">
+<font color="Black">25/45</font>人</td><td class="Remark"><div class="fontB">【自然科學】挺生學院跨領域學分學程</div></td></tr>
+<tr bgcolor="#EEEEEE" height="24"><td>&nbsp;</td><td align="center">Y2200</td><td>隨處可見之經濟學<br><div class="fontA">ECONOMICS</div></td>
+<td align="center" class="HideColB">王佳琪</td><td align="center" class="HideColB"><a name="LN58"><span style="font-size:14px;">選修 Elective</span></a></td>  <td align="center">1.0</td>
+  <td align="center" class="HideColB">
+<font color="Black">28/45</font>人</td><td class="Remark"><div class="fontB">【社會科學】微型課程，上課時間：1~8週+第17週；挺生學院跨領域學分學程；事資系請勿選修</div></td></tr>
+<tr bgcolor="#DDEEEE" height="24"><td>&nbsp;</td><td align="center">Y2210</td><td>財務報表<br><div class="fontA">FINANCIAL STATEMENTS</div></td>
+<td align="center" class="HideColB">司徒雯</td><td align="center" class="HideColB"><a name="LN59"><span style="font-size:14px;">選修 Elective</span></a></td>  <td align="center">1.0</td>
+  <td align="center" class="HideColB">
+<font color="Black">14/45</font>人</td><td class="Remark"><div class="fontB">【社會科學】微型課程，上課時間：9~16週+第18週；挺生學院跨領域學分學程；事資系請勿選修</div></td></tr>
+<tr bgcolor="#EEEEEE" height="24"><td>&nbsp;</td><td align="center">Y2410</td><td>應用電子創作<br><div class="fontA">CREATIVE   ELECTRONICS   PROJECTS</div></td>
+<td align="center" class="HideColB">張伯廷</td><td align="center" class="HideColB"><a name="LN60"><span style="font-size:14px;">選修 Elective</span></a></td>  <td align="center">1.0</td>
+  <td align="center" class="HideColB">
+<font color="Black">16/30</font>人</td><td class="Remark"><div class="fontB">【自然科學】微型課程，上課時間：雙數週上課+第17週；挺生學院跨領域學分學程；電機系請勿選修。教室設備緣故調整人數上限</div></td></tr>
+<tr bgcolor="#DDEEEE" height="24"><td>&nbsp;</td><td align="center">Y2600</td><td>設計表現方法<br><div class="fontA">DESIGN SKILL</div></td>
+<td align="center" class="HideColB">李尚林</td><td align="center" class="HideColB"><a name="LN61"><span style="font-size:14px;">選修 Elective</span></a></td>  <td align="center">2.0</td>
+  <td align="center" class="HideColB">
+<font color="Black">43/45</font>人</td><td class="Remark"><div class="fontB">【人文與藝術】挺生學院跨領域學分學程</div></td></tr>
+<tr bgcolor="#EEEEEE" height="24"><td>&nbsp;</td><td align="center">Y3010</td><td>經營總整<br><div class="fontA">MANAGEMENT CAPSTONE</div></td>
+<td align="center" class="HideColB">梁詠貴</td><td align="center" class="HideColB"><a name="LN62"><span style="font-size:14px;">選修 Elective</span></a></td>  <td align="center">2.0</td>
+  <td align="center" class="HideColB">
+<font color="Black">10/20</font>人</td><td class="Remark"><div class="fontB">【社會科學】【總整型】挺生學院跨領域學分學程；限大三以上選修</div></td></tr>
+<tr bgcolor="#DDEEEE" height="24"><td>&nbsp;</td><td align="center">Y3020</td><td>工程總整<br><div class="fontA">ENGINEERING CAPSTONE</div></td>
+<td align="center" class="HideColB">賴躍仁</td><td align="center" class="HideColB"><a name="LN63"><span style="font-size:14px;">選修 Elective</span></a></td>  <td align="center">2.0</td>
+  <td align="center" class="HideColB">
+<font color="Black">2/20</font>人</td><td class="Remark"><div class="fontB">【自然科學】【總整型】挺生學院跨領域學分學程；限大三以上選修</div></td></tr>
+<tr bgcolor="#EEEEEE" height="24"><td>&nbsp;</td><td align="center">Y3030</td><td>設計總整<br><div class="fontA">DESIGN CAPSTONE</div></td>
+<td align="center" class="HideColB">涂永祥</td><td align="center" class="HideColB"><a name="LN64"><span style="font-size:14px;">選修 Elective</span></a></td>  <td align="center">2.0</td>
+  <td align="center" class="HideColB">
+<font color="Black">5/20</font>人</td><td class="Remark"><div class="fontB">【人文與藝術】【總整型】挺生學院跨領域學分學程；限大三以上選修</div></td></tr>
+<tr bgcolor="GreenYellow">
+<td align="center" colspan="2">本表選修學分<br>Subtotal</td>
+<td>&nbsp;</td><td class="HideColB">&nbsp;</td><td class="HideColB">&nbsp;</td>
+<td align="center">0</td>
+<td class="HideColB">&nbsp;</td><td class="Remark">&nbsp;</td></tr>
+<tr bgcolor="Lime">
+<td align="center" colspan="2"><b>已選學分總計<br>Total</b></td>
+<td>&nbsp;</td><td class="HideColB">&nbsp;</td><td class="HideColB">&nbsp;</td>
+<td align="center"><b>7</b></td>
+<td class="HideColB">&nbsp;</td><td class="Remark">&nbsp;</td></tr>
+</tbody></table>
+</div><div class="footer">
+選課問題洽註課組(7520)，操作問題洽圖資處(6879)<br>
+大同大學 圖書資訊處 系統維護&nbsp;
+webmaster@gm.ttu.edu.tw
+</div>
+
+
+</div></div></body></html>

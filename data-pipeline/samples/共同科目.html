@@ -1,0 +1,233 @@
+
+<!-- saved from url=(0043)https://cousel.ttu.edu.tw/main/ListUGRR.php -->
+<html lang="zh-TW"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta http-equiv="Expires" content="Tue, 01 Jan 1980 1:00:00 GMT">
+<meta http-equiv="Pragma" content="no-cache">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.6">
+<link href="./共同科目_files/bootstrap.min.css" rel="stylesheet">
+<script src="./共同科目_files/bootstrap.bundle.min.js.下載"></script>
+<script src="./共同科目_files/jquery.min.js.下載"></script>
+<link rel="stylesheet" title="CISstyle" href="./共同科目_files/mis.css" type="text/css">
+<link rel="stylesheet" title="CISstyle" href="./共同科目_files/exw.css" type="text/css">
+<title>大同大學選課系統</title>
+<script type="text/javascript">
+<!--
+function confirmation(DspMsg, PassArg) {
+var name = confirm(DspMsg)
+    if (name == true) {
+		location=PassArg;
+    }
+}
+-->
+</script></head>
+
+<body>
+<div class="logo" style="text-align:center;padding:6px 0;">
+<a href="https://cousel.ttu.edu.tw/seltop.php">
+<img src="./共同科目_files/sel_logo.png" height="28">
+</a>
+</div>
+
+<div class="navmenu" style="padding:2px;font-size:14px;">
+  <div class="nav_wrapper">
+    <ul>  
+	<li><a href="https://cousel.ttu.edu.tw/main/ListUGRR.php#"><img src="./共同科目_files/action.png" height="30"></a>
+        <ul>
+        <li><a href="https://cousel.ttu.edu.tw/main/ListClassCourse.php">各班課程<br>Class Courses</a></li>
+        <li><a href="https://cousel.ttu.edu.tw/main/ListTeacher.php">全校教師課程<br>Instructor Courses</a></li>
+        <li><a href="https://cousel.ttu.edu.tw/main/ListUGRR.php">共同科目<br>Common Courses</a></li>
+        <li><a href="https://cousel.ttu.edu.tw/main/ListGeneral.php">通識課程<br>General Courses</a></li>
+        <li><a href="https://cousel.ttu.edu.tw/main/ListEngCourse.php">英語授課課程<br>Courses Taught in English </a></li>
+        <li><a href="https://cousel.ttu.edu.tw/main/ListTime.php">時段課程<br>Courses List by Time Slot</a></li>
+        <li><a href="https://cousel.ttu.edu.tw/main/FastSelect.php">快速選課<br>Quick Selection</a></li>
+        </ul>
+    </li>
+    <li><a href="https://cousel.ttu.edu.tw/main/ListUGRR.php#"><img src="./共同科目_files/mycourse.png" height="30"></a>
+        <ul>
+        <li><a href="https://cousel.ttu.edu.tw/main/ListSelected.php">已選課程<br>My Courses</a></li>
+        <li><a href="https://cousel.ttu.edu.tw/main/courseadd.php" target="_AddForm">選課加簽單<br>Course Signup Form</a></li>
+        <li><a href="https://cousel.ttu.edu.tw/main/WithdrawApp.php" target="_DropForm">期中退選申請<br>Course Withdraw Form</a></li>
+        <li><a href="https://cousel.ttu.edu.tw/main/Schedule.php">本人功課表<br>My Timetable</a></li>
+        </ul>
+    </li>
+    <li><a href="https://cousel.ttu.edu.tw/main/ListUGRR.php#"><img src="./共同科目_files/timetable.png" height="30"></a>
+        <ul>
+        <li><a href="https://cousel.ttu.edu.tw/main/ViewClass.php">班級功課表<br>Class Timetable</a></li>
+        <li><a href="https://cousel.ttu.edu.tw/main/ViewTeacher.php">教師功課表<br>Instructor Timetable</a></li>
+        <li><a href="https://cousel.ttu.edu.tw/main/ViewGeneral.php" target="_print">通識課時間表<br>General Courses Timetable</a></li>
+        <li><a href="https://cousel.ttu.edu.tw/main/ViewRoom.php" target="_blank">教室使用狀況<br>Classrooms Timetable</a></li>
+        </ul>
+    </li>
+    <li><a href="https://cousel.ttu.edu.tw/main/ListUGRR.php#"><img src="./共同科目_files/systeminfo.png" height="30"></a>
+		<ul>
+        <li><a href="https://cousel.ttu.edu.tw/docs/selhelp.php">使用說明<br>User Manual</a></li>
+        <li><a href="https://cousel.ttu.edu.tw/main/SelRecord.php">選課紀錄<br>Registration Records</a></li>
+		</ul>
+    </li>
+    <li><a href="https://cousel.ttu.edu.tw/logout.php"><img src="./共同科目_files/logout.png" height="30"></a>
+	</li>
+    </ul>
+  </div>
+</div><div class="logo">共同科目 Common Subjects</div>
+<style type="text/css">
+<!--
+.fontA {
+font-size: 0.72em;
+font-family: Arial narrow;
+}
+.fontB {
+font-size: 1em;
+font-family: Arial narrow;
+color: red;
+}
+-->
+</style>
+
+<div style="text-align:center">
+目前並非您可以選課的期間。<br>It is not the time you can enroll courses.<table class="mistab" width="98%" align="center">
+<tbody><tr style="text-align:center;">
+  <th width="60">處理<br>Action</th>
+  <th width="60">課代碼<br>Code</th>
+  <th style="text-align:left;" width="200">課程名稱<br>Course Name</th>
+  <th width="85" class="HideColB">教師<br>Instructor</th>
+  <th width="125" class="HideColB">必修/選修<br><div style="font-size:12px;">Required/Elective</div></th>
+  <th width="60">學分<br>Credit</th>
+  <th width="100" class="HideColB">已選/上限<br><div style="font-size:12px;">Enrolled/Limit</div></th>
+  <th style="text-align:left;" class="Remark">附註說明 Remark</th>
+</tr>
+<tr bgcolor="#DDEEEE" height="24"><td>&nbsp;</td><td align="center">G0020</td><td>志工服務學習<br><div class="fontA">VOLUNTEER SERVICE</div></td>
+<td align="center" class="HideColB">吳啟絹</td><td align="center" class="HideColB"><span style="font-size:14px;">選修 Elective</span></td>  <td align="center">1.0</td>
+  <td align="center" class="HideColB">
+<font color="Black">6/55</font>人</td><td class="Remark"><div class="fontB">限初次擔任小學堂志工者需選課，方可承認1學分。如擔任兩(含)學期以上小學堂志工者，請勿選課。</div></td></tr>
+<tr bgcolor="#EEEEEE" height="24"><td>&nbsp;</td><td align="center">G0210</td><td>華語1級(華語初級班)<br><div class="fontA">LEVEL 1 CHINESE (ELEMENTARY CHINESE)</div></td>
+<td align="center" class="HideColB">童昱綺</td><td align="center" class="HideColB"><span style="font-size:14px;">選修 Elective</span></td>  <td align="center">4.0</td>
+  <td align="center" class="HideColB">
+<font color="Black">1/10</font>人</td><td class="Remark"><div class="fontB">週三在圖書館多媒體教室上課</div></td></tr>
+<tr bgcolor="#DDEEEE" height="24"><td>&nbsp;</td><td align="center">G0230</td><td>華語3級(華語中高級班)<br><div class="fontA">LEVEL 3 CHINESE (HIGH INTERMEDIATE CHINESE)</div></td>
+<td align="center" class="HideColB">童昱綺</td><td align="center" class="HideColB"><span style="font-size:14px;">選修 Elective</span></td>  <td align="center">4.0</td>
+  <td align="center" class="HideColB">
+<font color="Black">2/10</font>人</td><td class="Remark"><div class="fontB">週三在圖書館多媒體教室上課</div></td></tr>
+<tr bgcolor="#EEEEEE" height="24"><td>&nbsp;</td><td align="center">G1020A</td><td>英語閱讀測驗訓練<br><div class="fontA">TRAINING ON ENGLISH READING TEST</div></td>
+<td align="center" class="HideColB">馬儷菁</td><td align="center" class="HideColB"><span style="font-size:14px;">選修 Elective</span></td>  <td align="center">0.0</td>
+  <td align="center" class="HideColB">
+<font color="Black">37/63</font>人</td><td class="Remark"><div class="fontB">限大學部"大三以上"未通過英語畢業門檻學生選修(應外系勿選)；週一 5、6節</div></td></tr>
+<tr bgcolor="#DDEEEE" height="24"><td>&nbsp;</td><td align="center">G1020B</td><td>英語閱讀測驗訓練<br><div class="fontA">TRAINING ON ENGLISH READING TEST</div></td>
+<td align="center" class="HideColB">李信明</td><td align="center" class="HideColB"><span style="font-size:14px;">選修 Elective</span></td>  <td align="center">0.0</td>
+  <td align="center" class="HideColB">
+<font color="Red">63/63</font>人</td><td class="Remark"><div class="fontB">限大學部"大三以上"未通過英語畢業門檻學生選修(應外系勿選)；週五 3、4節</div></td></tr>
+<tr bgcolor="#EEEEEE" height="24"><td>&nbsp;</td><td align="center">G1020C</td><td>英語閱讀測驗訓練<br><div class="fontA">TRAINING ON ENGLISH READING TEST</div></td>
+<td align="center" class="HideColB">周綵潔</td><td align="center" class="HideColB"><span style="font-size:14px;">選修 Elective</span></td>  <td align="center">0.0</td>
+  <td align="center" class="HideColB">
+<font color="Black">51/63</font>人</td><td class="Remark"><div class="fontB">限大學部"大三以上"未通過英語畢業門檻學生選修(應外系勿選)；週二 5、6節</div></td></tr>
+<tr bgcolor="#DDEEEE" height="24"><td>&nbsp;</td><td align="center">G1030A</td><td>英語聽力測驗訓練<br><div class="fontA">TRAINING ON ENGLISH LISTENING TEST</div></td>
+<td align="center" class="HideColB">馬儷菁</td><td align="center" class="HideColB"><span style="font-size:14px;">選修 Elective</span></td>  <td align="center">0.0</td>
+  <td align="center" class="HideColB">
+<font color="Black">24/63</font>人</td><td class="Remark"><div class="fontB">限大學部"大三以上"未通過英語畢業門檻學生選修(應外系勿選)；週一 7、8節</div></td></tr>
+<tr bgcolor="#EEEEEE" height="24"><td>&nbsp;</td><td align="center">G1030B</td><td>英語聽力測驗訓練<br><div class="fontA">TRAINING ON ENGLISH LISTENING TEST</div></td>
+<td align="center" class="HideColB">李信明</td><td align="center" class="HideColB"><span style="font-size:14px;">選修 Elective</span></td>  <td align="center">0.0</td>
+  <td align="center" class="HideColB">
+<font color="Red">63/63</font>人</td><td class="Remark"><div class="fontB">限大學部"大三以上"未通過英語畢業門檻學生選修(應外系勿選)；週五 1、2節</div></td></tr>
+<tr bgcolor="#DDEEEE" height="24"><td>&nbsp;</td><td align="center">G1030C</td><td>英語聽力測驗訓練<br><div class="fontA">TRAINING ON ENGLISH LISTENING TEST</div></td>
+<td align="center" class="HideColB">周綵潔</td><td align="center" class="HideColB"><span style="font-size:14px;">選修 Elective</span></td>  <td align="center">0.0</td>
+  <td align="center" class="HideColB">
+<font color="Black">48/63</font>人</td><td class="Remark"><div class="fontB">限大學部"大三以上"未通過英語畢業門檻學生選修(應外系勿選)；週二 7、8節</div></td></tr>
+<tr bgcolor="#EEEEEE" height="24"><td>&nbsp;</td><td align="center">G1950</td><td>全民國防教育軍事訓練_國防科技<br><div class="fontA">DEFENSE TECHNOLOGY</div></td>
+<td align="center" class="HideColB">楊珮華</td><td align="center" class="HideColB"><span style="font-size:14px;">選修 Elective</span></td>  <td align="center">1.0</td>
+  <td align="center" class="HideColB">
+<font color="Black">137/160</font>人</td><td class="Remark"><div class="fontB">供兵役抵免，但不認列通識領域畢業學分。星期一第七、八節</div></td></tr>
+<tr bgcolor="#DDEEEE" height="24"><td>&nbsp;</td><td align="center">G1970</td><td>全民國防教育軍事訓練_全民國防<br><div class="fontA">ALL-OUT  DEFENSE</div></td>
+<td align="center" class="HideColB">張孝武</td><td align="center" class="HideColB"><a name="LN13"><span style="font-size:14px;">選修 Elective</span></a></td>  <td align="center">1.0</td>
+  <td align="center" class="HideColB">
+<font color="Black">152/160</font>人</td><td class="Remark"><div class="fontB">供兵役抵免，但不認列通識領域畢業學分。星期二第三、四節</div></td></tr>
+<tr bgcolor="#EEEEEE" height="24"><td>&nbsp;</td><td align="center">G1980</td><td>全民國防教育軍事訓練_防衛動員<br><div class="fontA">DEFENSE  MOBILIZATION</div></td>
+<td align="center" class="HideColB">胡乾增</td><td align="center" class="HideColB"><a name="LN14"><span style="font-size:14px;">選修 Elective</span></a></td>  <td align="center">1.0</td>
+  <td align="center" class="HideColB">
+<font color="Red">160/160</font>人</td><td class="Remark"><div class="fontB">供兵役抵免，但不認列通識領域畢業學分。星期三第五、六節</div></td></tr>
+<tr bgcolor="#DDEEEE" height="24"><td>&nbsp;</td><td align="center">G1990</td><td>全民國防教育軍事訓練_國防政策<br><div class="fontA">NATIONAL DEFENSE POLICIES</div></td>
+<td align="center" class="HideColB">張孝武</td><td align="center" class="HideColB"><a name="LN15"><span style="font-size:14px;">選修 Elective</span></a></td>  <td align="center">1.0</td>
+  <td align="center" class="HideColB">
+<font color="Black">140/160</font>人</td><td class="Remark"><div class="fontB">供兵役抵免，但不認列通識領域畢業學分。星期二第七、八節</div></td></tr>
+<tr bgcolor="#EEEEEE" height="24"><td>&nbsp;</td><td align="center">G3907</td><td>健身體塑(七)<br><div class="fontA">BODYBUILIDING</div></td>
+<td align="center" class="HideColB">簡吉利</td><td align="center" class="HideColB"><a name="LN16"><span style="font-size:14px;">選修 Elective</span></a></td>  <td align="center">1.0</td>
+  <td align="center" class="HideColB">
+<font color="Black">28/36</font>人</td><td class="Remark"><div class="fontB">體育選修(任何年級皆可選)</div></td></tr>
+<tr bgcolor="#DDEEEE" height="24"><td>&nbsp;</td><td align="center">L2831</td><td>西班牙語(一)<br><div class="fontA">SPANISH</div></td>
+<td align="center" class="HideColB">馮志宇</td><td align="center" class="HideColB"><a name="LN17"><span style="font-size:14px;">選修 Elective</span></a></td>  <td align="center">2.0</td>
+  <td align="center" class="HideColB">
+<font color="Black">17/50</font>人</td><td class="Remark"><div class="fontB">若未達基本開課人數(10人) 此課程將不開課/可認列為語文通識</div></td></tr>
+<tr bgcolor="#EEEEEE" height="24"><td>&nbsp;</td><td align="center">L2861</td><td>初階法文(一)<br><div class="fontA">BASIC FRENCH</div></td>
+<td align="center" class="HideColB">林書劍</td><td align="center" class="HideColB"><a name="LN18"><span style="font-size:14px;">選修 Elective</span></a></td>  <td align="center">2.0</td>
+  <td align="center" class="HideColB">
+<font color="Black">24/50</font>人</td><td class="Remark"><div class="fontB">若未達基本開課人數(10人) 此課程將不開課//可認列為語文通識</div></td></tr>
+<tr bgcolor="#DDEEEE" height="24"><td>&nbsp;</td><td align="center">L2871</td><td>初階德文(一)<br><div class="fontA">GERMAN</div></td>
+<td align="center" class="HideColB">吳姉霙</td><td align="center" class="HideColB"><a name="LN19"><span style="font-size:14px;">選修 Elective</span></a></td>  <td align="center">2.0</td>
+  <td align="center" class="HideColB">
+<font color="Black">17/50</font>人</td><td class="Remark"><div class="fontB">若未達基本開課人數(10人) 此課程將不開課/可認列為語文通識</div></td></tr>
+<tr bgcolor="#EEEEEE" height="24"><td>&nbsp;</td><td align="center">U2880</td><td>(成大)人工智慧導論<br><div class="fontA">INTRODUCTION TO ARTIFICIAL INTELLIGENCE</div></td>
+<td align="center" class="HideColB">成大朱威達</td><td align="center" class="HideColB"><a name="LN20"><span style="font-size:14px;">選修 Elective</span></a></td>  <td align="center">3.0</td>
+  <td align="center" class="HideColB">
+<font color="Black">4/50</font>人</td><td class="Remark"><div class="fontB">AI聯盟；開課學制:大學部；課綱:https://reurl.cc/Wz4yRk</div></td></tr>
+<tr bgcolor="#DDEEEE" height="24"><td>&nbsp;</td><td align="center">U2890</td><td>(台大)金融科技導論<br><div class="fontA">INTRODUCTION TO FINTECH</div></td>
+<td align="center" class="HideColB">台大張智星</td><td align="center" class="HideColB"><a name="LN21"><span style="font-size:14px;">選修 Elective</span></a></td>  <td align="center">3.0</td>
+  <td align="center" class="HideColB">
+<font color="Black">4/45</font>人</td><td class="Remark"><div class="fontB">AI聯盟；開課學制:研究所；課綱:https://reurl.cc/MW79D4</div></td></tr>
+<tr bgcolor="#EEEEEE" height="24"><td>&nbsp;</td><td align="center">U2900</td><td>(台大)機器學習<br><div class="fontA">MACHINE LEARNING</div></td>
+<td align="center" class="HideColB">台大林軒田</td><td align="center" class="HideColB"><a name="LN22"><span style="font-size:14px;">選修 Elective</span></a></td>  <td align="center">3.0</td>
+  <td align="center" class="HideColB">
+<font color="Black">7/10</font>人</td><td class="Remark"><div class="fontB">AI聯盟；開課學制:大三以上、研究所；課綱:https://reurl.cc/90zxLd</div></td></tr>
+<tr bgcolor="#DDEEEE" height="24"><td>&nbsp;</td><td align="center">U2910</td><td>(清大)自然語言處理<br><div class="fontA">NATURAL LANGUAGE PROCESSING</div></td>
+<td align="center" class="HideColB">清大高宏宇</td><td align="center" class="HideColB"><a name="LN23"><span style="font-size:14px;">選修 Elective</span></a></td>  <td align="center">3.0</td>
+  <td align="center" class="HideColB">
+<font color="Black">4/40</font>人</td><td class="Remark"><div class="fontB">AI聯盟；開課學制:研究所；課綱:https://reurl.cc/xeDo8L</div></td></tr>
+<tr bgcolor="#EEEEEE" height="24"><td>&nbsp;</td><td align="center">U2920</td><td>(清大)資料探勘與應用<br><div class="fontA">DATA MINING: CONCEPTS, TECHNIQUES, AND APPLICATIONS</div></td>
+<td align="center" class="HideColB">清大陳宜欣</td><td align="center" class="HideColB"><a name="LN24"><span style="font-size:14px;">選修 Elective</span></a></td>  <td align="center">3.0</td>
+  <td align="center" class="HideColB">
+<font color="Black">0/55</font>人</td><td class="Remark"><div class="fontB">AI聯盟；英語授課；開課學制:大三以上、研究所；課綱:https://reurl.cc/dOr9rV</div></td></tr>
+<tr bgcolor="#DDEEEE" height="24"><td>&nbsp;</td><td align="center">U3110</td><td>政大-生成式AI:文字與圖像生成的原理與實務<br><div class="fontA">GENAI : TEXT AND IMAGE SYNTHESIS PRINCIPLES AND PRACTICE</div></td>
+<td align="center" class="HideColB">政大蔡炎龍</td><td align="center" class="HideColB"><a name="LN25"><span style="font-size:14px;">選修 Elective</span></a></td>  <td align="center">3.0</td>
+  <td align="center" class="HideColB">
+<font color="Black">21/50</font>人</td><td class="Remark"><div class="fontB">AI聯盟；開課學制:大學部、研究所；課綱:https://reurl.cc/OQbzW9</div></td></tr>
+<tr bgcolor="#EEEEEE" height="24"><td>&nbsp;</td><td align="center">U3350</td><td>(陽明交大)基礎程式設計(C++)<br><div class="fontA">INTRODUCTION TO PROGRAMMING (C++)</div></td>
+<td align="center" class="HideColB">陽明交大温宏斌</td><td align="center" class="HideColB"><a name="LN26"><span style="font-size:14px;">選修 Elective</span></a></td>  <td align="center">3.0</td>
+  <td align="center" class="HideColB">
+<font color="Black">3/50</font>人</td><td class="Remark"><div class="fontB">AI聯盟；開課學制:大學部；課綱:https://reurl.cc/274N19</div></td></tr>
+<tr bgcolor="#DDEEEE" height="24"><td>&nbsp;</td><td align="center">U3360</td><td>(台大)統計學暨實習<br><div class="fontA">STATISTICS WITH RECITATION</div></td>
+<td align="center" class="HideColB">台大李宗穎</td><td align="center" class="HideColB"><a name="LN27"><span style="font-size:14px;">選修 Elective</span></a></td>  <td align="center">3.0</td>
+  <td align="center" class="HideColB">
+<font color="Black">0/55</font>人</td><td class="Remark"><div class="fontB">AI聯盟；英語授課；開課學制:大學部；課綱:https://reurl.cc/mzd799</div></td></tr>
+<tr bgcolor="#EEEEEE" height="24"><td>&nbsp;</td><td align="center">U3370</td><td>(北科)智慧人機互動<br><div class="fontA">HUMAN-AI INTERACTION</div></td>
+<td align="center" class="HideColB">北科韓秉軒</td><td align="center" class="HideColB"><a name="LN28"><span style="font-size:14px;">選修 Elective</span></a></td>  <td align="center">3.0</td>
+  <td align="center" class="HideColB">
+<font color="Black">0/50</font>人</td><td class="Remark"><div class="fontB">AI聯盟；開課學制:大三以上、研究所；課綱:https://reurl.cc/eQ5nqM</div></td></tr>
+<tr bgcolor="#DDEEEE" height="24"><td>&nbsp;</td><td align="center">U3600</td><td>(陽明交大)實體人工智慧<br><div class="fontA"></div></td>
+<td align="center" class="HideColB">陽明交大陳奕廷</td><td align="center" class="HideColB"><a name="LN29"><span style="font-size:14px;">選修 Elective</span></a></td>  <td align="center">3.0</td>
+  <td align="center" class="HideColB">
+<font color="Black">1/55</font>人</td><td class="Remark"><div class="fontB">AI聯盟；英語授課；開課學制:大四以上、研究所；課綱:https://reurl.cc/6Xgk2M</div></td></tr>
+<tr bgcolor="#EEEEEE" height="24"><td>&nbsp;</td><td align="center">X3010</td><td>媒客松工作坊<br><div class="fontA">MAKEATHON WORKSHOP</div></td>
+<td align="center" class="HideColB">林楷潔</td><td align="center" class="HideColB"><a name="LN30"><span style="font-size:14px;">選修 Elective</span></a></td>  <td align="center">2.0</td>
+  <td align="center" class="HideColB">
+<font color="Red">0/0</font>人</td><td class="Remark"><div class="fontB">【微型課程】9/5~9/8</div></td></tr>
+<tr bgcolor="#DDEEEE" height="24"><td>&nbsp;</td><td align="center">X3940</td><td>智慧照明系統與照明燈具設計<br><div class="fontA">INTELLIGENT LIGHTING SYSTEM AND LIGHTING FIXTURE DESIGN</div></td>
+<td align="center" class="HideColB">蕭弘清</td><td align="center" class="HideColB"><a name="LN31"><span style="font-size:14px;">選修 Elective</span></a></td>  <td align="center">3.0</td>
+  <td align="center" class="HideColB">
+<font color="Red">30/30</font>人</td><td class="Remark"><div class="fontB">&nbsp;</div></td></tr>
+<tr bgcolor="GreenYellow">
+<td align="center" colspan="2">本表選修學分<br>Subtotal</td>
+<td>&nbsp;</td><td class="HideColB">&nbsp;</td><td class="HideColB">&nbsp;</td>
+<td align="center">0</td>
+<td class="HideColB">&nbsp;</td><td class="Remark">&nbsp;</td></tr>
+<tr bgcolor="Lime">
+<td align="center" colspan="2"><b>已選學分總計<br>Total</b></td>
+<td>&nbsp;</td><td class="HideColB">&nbsp;</td><td class="HideColB">&nbsp;</td>
+<td align="center"><b>7</b></td>
+<td class="HideColB">&nbsp;</td><td class="Remark">&nbsp;</td></tr>
+</tbody></table>
+</div><div class="footer">
+選課問題洽註課組(7520)，操作問題洽圖資處(6879)<br>
+大同大學 圖書資訊處 系統維護&nbsp;
+webmaster@gm.ttu.edu.tw
+</div>
+
+
+</body></html>

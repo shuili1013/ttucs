@@ -1,0 +1,22 @@
+# 相依套件 / build 產物
+node_modules/
+app/node_modules/
+app/dist/
+
+# 機密與產生的資料（切勿上傳！）
+data-pipeline/.env
+data-pipeline/data/
+data-pipeline/__pycache__/
+
+# 抓取分析暫存
+data-pipeline/samples/_*.txt
+data-pipeline/samples/_*.json
+data-pipeline/samples/*_files/
+
+# 參考用的原始專案 clone（改以連結標註，不重新散布）
+_ref_nsysu/
+
+# 雜項
+*.log
+.DS_Store
+Thumbs.db

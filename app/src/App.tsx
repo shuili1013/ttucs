@@ -21,6 +21,7 @@ import {
   selectThemeConfig,
 } from '@/store';
 import SectionHeader from '#/SectionHeader.tsx';
+import EntryNotification from '#/EntryNotification.tsx';
 import SelectorPanel from '#/SelectorPanel.tsx';
 import ScheduleTable from '#/ScheduleTable.tsx';
 
@@ -177,6 +178,7 @@ const AppContent: React.FC = () => {
   return (
     <ConfigProvider theme={themeConfig}>
       {isLoading && <Spin spinning={true} fullscreen />}
+      <EntryNotification />
       <SectionHeader
         selectedKey={selectedTabKey}
         setSelectedKey={(key: string) => dispatch(setSelectedTabKey(key))}

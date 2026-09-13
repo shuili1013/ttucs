@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="zh-TW">
+  <head>
+    <meta charset="utf-8" />
+    <style>
+      :root {
+        --navy: #002060;
+      }
+      body {
+        width: 340px;
+        margin: 0;
+        padding: 12px;
+        font-family: 'Microsoft JhengHei', system-ui, sans-serif;
+        font-size: 13px;
+        color: #1a1a1a;
+      }
+      h1 {
+        font-size: 15px;
+        margin: 0 0 8px;
+        color: var(--navy);
+      }
+      label {
+        display: block;
+        margin: 10px 0 4px;
+        font-weight: 600;
+      }
+      textarea,
+      input[type='datetime-local'],
+      input[type='number'] {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 6px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-family: monospace;
+        font-size: 13px;
+      }
+      textarea {
+        height: 96px;
+        resize: vertical;
+      }
+      .row {
+        display: flex;
+        gap: 8px;
+      }
+      .row > div {
+        flex: 1;
+      }
+      button {
+        margin-top: 10px;
+        padding: 8px 10px;
+        border: none;
+        border-radius: 4px;
+        background: var(--navy);
+        color: #fff;
+        cursor: pointer;
+        font-size: 13px;
+      }
+      button.secondary {
+        background: #eee;
+        color: #333;
+      }
+      button.danger {
+        background: #c0392b;
+      }
+      .btns {
+        display: flex;
+        gap: 8px;
+      }
+      .btns button {
+        flex: 1;
+      }
+      #status {
+        margin-top: 10px;
+        padding: 8px;
+        border-radius: 4px;
+        background: #f3f5fa;
+        white-space: pre-wrap;
+        font-size: 12px;
+        min-height: 18px;
+      }
+      #log {
+        margin-top: 8px;
+        max-height: 120px;
+        overflow: auto;
+        font-size: 11px;
+        color: #555;
+        white-space: pre-wrap;
+      }
+      .hint {
+        color: #888;
+        font-size: 11px;
+        font-weight: normal;
+      }
+      .warn {
+        color: #c0392b;
+        font-size: 11px;
+        margin-top: 8px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>大同快速選課助手</h1>
+
+    <label>課號清單 <span class="hint">（一行一個，可從網站匯出貼上）</span></label>
+    <textarea id="codes" placeholder="A1234&#10;B3550&#10;C1280A"></textarea>
+
+    <label>排定送出時間</label>
+    <input type="datetime-local" id="fireAt" step="1" />
+
+    <div class="row">
+      <div>
+        <label>重試間隔(秒)</label>
+        <input type="number" id="retrySec" value="1.5" step="0.5" min="0.5" />
+      </div>
+      <div>
+        <label>重試上限(次)</label>
+        <input type="number" id="maxRetries" value="8" min="1" max="30" />
+      </div>
+    </div>
+
+    <div class="btns">
+      <button id="save">排程</button>
+      <button id="cancel" class="secondary">取消排程</button>
+    </div>
+    <button id="testNow" class="secondary" style="width: 100%">立即送出一次（測試）</button>
+
+    <div id="status">尚未排程</div>
+    <div id="log"></div>
+
+    <div class="warn">
+      ⚠ 送出前請確保已登入 cousel.ttu.edu.tw。此工具僅送出你自己排定的課，
+      採「準時送出＋失敗有限重試」，請勿濫用。實際結果以官方系統為準。
+    </div>
+
+    <script src="popup.js"></script>
+  </body>
+</html>

@@ -1,0 +1,15 @@
+{
+  "manifest_version": 3,
+  "name": "大同快速選課助手",
+  "version": "0.1.0",
+  "description": "從大同選課助手匯入課號，排定時間自動送出快速選課（含伺服器校時與有限次重試）。",
+  "permissions": ["storage", "alarms", "scripting", "tabs"],
+  "host_permissions": ["https://cousel.ttu.edu.tw/*"],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "大同快速選課助手"
+  },
+  "background": {
+    "service_worker": "background.js"
+  }
+}

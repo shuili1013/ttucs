@@ -10,10 +10,6 @@
     <main class="app-shell">
       <header class="app-header">
         <div class="brand">
-          <span class="brand-mark" aria-hidden="true"
-            ><svg viewBox="0 0 24 24">
-              <path d="M13 2 4.5 13.2h6.2L10 22l9.5-12.5h-6.2L13 2Z" /></svg
-          ></span>
           <div>
             <p>TTU COURSE</p>
             <h1>快速選課助手</h1>
@@ -27,9 +23,7 @@
           title="更多設定"
         >
           <svg viewBox="0 0 24 24" aria-hidden="true">
-            <circle cx="5" cy="12" r="1.8" />
-            <circle cx="12" cy="12" r="1.8" />
-            <circle cx="19" cy="12" r="1.8" />
+            <path d="M4 7h16M4 12h16M4 17h16" />
           </svg>
         </button>
       </header>
@@ -260,6 +254,19 @@
         </button>
       </header>
       <div class="settings-card">
+        <div class="setting-row">
+          <div><strong>深色模式</strong><small>切換擴充功能外觀</small></div>
+          <button
+            id="themeToggle"
+            class="theme-switch"
+            type="button"
+            role="switch"
+            aria-checked="false"
+            aria-label="切換深色模式"
+          >
+            <span></span>
+          </button>
+        </div>
         <div class="setting-row">
           <div><strong>重試間隔</strong><small>未開放時再次嘗試</small></div>
           <div class="step-control">

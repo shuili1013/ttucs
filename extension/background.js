@@ -152,6 +152,26 @@ chrome.runtime.onMessage.addListener((m, sender, sendResponse) => {
   (async () => {
     if (m.type === 'getServerOffset') {
       sendResponse({ offsetMs: await getServerOffsetMs() });
+    } else if (m.type === 'syncWebTheme') {
+      const { uiPreferences: savedPreferences } =
+        await chrome.storage.local.get('uiPreferences');
+      const requestedRadius = Number(m.theme?.borderRadius);
+      const uiPreferences = {
+        isDarkMode: savedPreferences?.manualTheme
+          ? Boolean(savedPreferences.isDarkMode)
+          : Boolean(m.theme?.isDarkMode),
+        borderRadius: Number.isFinite(requestedRadius)
+          ? Math.min(16, Math.max(0, requestedRadius))
+          : 4,
+        manualTheme: Boolean(savedPreferences?.manualTheme),
+      };
+      await chrome.storage.local.set({ uiPreferences });
+      void chrome.runtime
+        .sendMessage({ type: 'theme', uiPreferences })
+        .catch(() => {
+          /* popup 沒開，忽略 */
+        });
+      sendResponse({ ok: true });
     } else if (m.type === 'importCoursesFromWeb') {
       const codes = [
         ...new Set(

@@ -5,9 +5,21 @@
   "description": "從大同選課助手匯入課號，排定時間自動送出快速選課（含伺服器校時與有限次重試）。",
   "permissions": ["storage", "alarms", "scripting", "tabs"],
   "host_permissions": ["https://cousel.ttu.edu.tw/*"],
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
   "action": {
     "default_popup": "popup.html",
-    "default_title": "大同快速選課助手"
+    "default_title": "大同快速選課助手",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
   },
   "background": {
     "service_worker": "background.js"

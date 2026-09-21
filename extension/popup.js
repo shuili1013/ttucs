@@ -10,6 +10,27 @@ let pickerDate = null;
 let calendarCursor = null;
 let toastTimer = null;
 let backdropTimer = null;
+let uiPreferences = {
+  isDarkMode: false,
+  borderRadius: 4,
+  manualTheme: false,
+};
+
+function applyTheme(preferences) {
+  const isDarkMode = Boolean(preferences?.isDarkMode);
+  const requestedRadius = Number(preferences?.borderRadius);
+  const radius = Number.isFinite(requestedRadius)
+    ? Math.min(16, Math.max(0, requestedRadius))
+    : 4;
+  uiPreferences = {
+    isDarkMode,
+    borderRadius: radius,
+    manualTheme: Boolean(preferences?.manualTheme),
+  };
+  document.documentElement.dataset.theme = isDarkMode ? "dark" : "light";
+  document.documentElement.style.setProperty("--web-radius", `${radius}px`);
+  $("themeToggle")?.setAttribute("aria-checked", String(isDarkMode));
+}
 
 function parseCodes(text) {
   return [
@@ -124,7 +145,12 @@ async function saveDraft() {
 }
 
 async function loadState() {
-  const stored = await chrome.storage.local.get(["config", "draft"]);
+  const stored = await chrome.storage.local.get([
+    "config",
+    "draft",
+    "uiPreferences",
+  ]);
+  applyTheme(stored.uiPreferences);
   activeConfig = stored.config || null;
   const source = stored.draft || stored.config;
   if (source) {
@@ -270,6 +296,15 @@ $("openCourses").addEventListener("click", () => {
 });
 $("openTime").addEventListener("click", beginTimeEdit);
 $("openMenu").addEventListener("click", () => openLayer($("menuPanel")));
+$("themeToggle").addEventListener("click", async () => {
+  const nextPreferences = {
+    ...uiPreferences,
+    isDarkMode: !uiPreferences.isDarkMode,
+    manualTheme: true,
+  };
+  applyTheme(nextPreferences);
+  await chrome.storage.local.set({ uiPreferences: nextPreferences });
+});
 $("backdrop").addEventListener("click", () => closeLayers());
 document
   .querySelectorAll(".close-sheet")
@@ -399,6 +434,8 @@ chrome.runtime.onMessage.addListener((message) => {
   if (message.type === "state") {
     activeConfig = message.config;
     renderStatus();
+  } else if (message.type === "theme") {
+    applyTheme(message.uiPreferences);
   }
 });
 

@@ -21,6 +21,7 @@ import {
   ImportOutlined,
   CopyOutlined,
   QuestionCircleOutlined,
+  SendOutlined,
 } from '@ant-design/icons';
 import { Virtuoso, VirtuosoHandle } from 'react-virtuoso';
 import styled from 'styled-components';
@@ -200,6 +201,64 @@ const SelectedExport: React.FC = () => {
   const exportedCount = useMemo(() => {
     return courseData.filter((item) => item.isExported).length;
   }, [courseData]);
+
+  // 將勾選匯出的課號交給瀏覽器擴充功能。
+  const sendToExtension = useCallback(async () => {
+    const codes = courseData
+      .filter((item) => item.isExported)
+      .map((item) => item.course.id);
+
+    if (codes.length === 0) {
+      void messageApi.warning(t('selectedExportMessages.selectAtLeastOne'));
+      return;
+    }
+
+    const requestId = crypto.randomUUID();
+
+    try {
+      const count = await new Promise<number>((resolve, reject) => {
+        const timeoutId = window.setTimeout(() => {
+          window.removeEventListener('message', handleResponse);
+          reject(new Error('Extension response timeout'));
+        }, 1200);
+
+        function handleResponse(event: MessageEvent) {
+          if (
+            event.source !== window ||
+            event.origin !== window.location.origin ||
+            event.data?.source !== 'ttu-course-extension' ||
+            event.data?.type !== 'TTU_COURSES_IMPORTED' ||
+            event.data?.requestId !== requestId
+          ) {
+            return;
+          }
+
+          window.clearTimeout(timeoutId);
+          window.removeEventListener('message', handleResponse);
+          if (event.data.ok) resolve(event.data.count);
+          else reject(new Error(event.data.error || 'Extension import failed'));
+        }
+
+        window.addEventListener('message', handleResponse);
+        window.postMessage(
+          {
+            source: 'ttu-course-selector',
+            type: 'TTU_IMPORT_COURSES',
+            requestId,
+            codes,
+          },
+          window.location.origin,
+        );
+      });
+
+      void messageApi.success(
+        t('selectedExport.sendToExtensionSuccess', { count }),
+      );
+    } catch {
+      void messageApi.error(t('selectedExport.sendToExtensionError'));
+    }
+  }, [courseData, messageApi, t]);
+
   // 虛擬列表渲染項目
   const renderItem = (index: number) => {
     if (index === 0) {
@@ -244,6 +303,14 @@ const SelectedExport: React.FC = () => {
           size='small'
         >
           {t('selectedExport.importButton')}
+        </Button>
+        <Button
+          icon={<SendOutlined />}
+          onClick={() => void sendToExtension()}
+          disabled={exportedCount === 0}
+          size='small'
+        >
+          {t('selectedExport.sendToExtension')}
         </Button>
         <Button
           type='primary'

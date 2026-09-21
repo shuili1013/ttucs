@@ -2,137 +2,309 @@
 <html lang="zh-TW">
   <head>
     <meta charset="utf-8" />
-    <style>
-      :root {
-        --navy: #002060;
-      }
-      body {
-        width: 340px;
-        margin: 0;
-        padding: 12px;
-        font-family: 'Microsoft JhengHei', system-ui, sans-serif;
-        font-size: 13px;
-        color: #1a1a1a;
-      }
-      h1 {
-        font-size: 15px;
-        margin: 0 0 8px;
-        color: var(--navy);
-      }
-      label {
-        display: block;
-        margin: 10px 0 4px;
-        font-weight: 600;
-      }
-      textarea,
-      input[type='datetime-local'],
-      input[type='number'] {
-        width: 100%;
-        box-sizing: border-box;
-        padding: 6px;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        font-family: monospace;
-        font-size: 13px;
-      }
-      textarea {
-        height: 96px;
-        resize: vertical;
-      }
-      .row {
-        display: flex;
-        gap: 8px;
-      }
-      .row > div {
-        flex: 1;
-      }
-      button {
-        margin-top: 10px;
-        padding: 8px 10px;
-        border: none;
-        border-radius: 4px;
-        background: var(--navy);
-        color: #fff;
-        cursor: pointer;
-        font-size: 13px;
-      }
-      button.secondary {
-        background: #eee;
-        color: #333;
-      }
-      button.danger {
-        background: #c0392b;
-      }
-      .btns {
-        display: flex;
-        gap: 8px;
-      }
-      .btns button {
-        flex: 1;
-      }
-      #status {
-        margin-top: 10px;
-        padding: 8px;
-        border-radius: 4px;
-        background: #f3f5fa;
-        white-space: pre-wrap;
-        font-size: 12px;
-        min-height: 18px;
-      }
-      #log {
-        margin-top: 8px;
-        max-height: 120px;
-        overflow: auto;
-        font-size: 11px;
-        color: #555;
-        white-space: pre-wrap;
-      }
-      .hint {
-        color: #888;
-        font-size: 11px;
-        font-weight: normal;
-      }
-      .warn {
-        color: #c0392b;
-        font-size: 11px;
-        margin-top: 8px;
-      }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>大同快速選課助手</title>
+    <link rel="stylesheet" href="popup.css" />
   </head>
   <body>
-    <h1>大同快速選課助手</h1>
+    <main class="app-shell">
+      <header class="app-header">
+        <div class="brand">
+          <span class="brand-mark" aria-hidden="true"
+            ><svg viewBox="0 0 24 24">
+              <path d="M13 2 4.5 13.2h6.2L10 22l9.5-12.5h-6.2L13 2Z" /></svg
+          ></span>
+          <div>
+            <p>TTU COURSE</p>
+            <h1>快速選課助手</h1>
+          </div>
+        </div>
+        <button
+          id="openMenu"
+          class="icon-button"
+          type="button"
+          aria-label="更多設定"
+          title="更多設定"
+        >
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="5" cy="12" r="1.8" />
+            <circle cx="12" cy="12" r="1.8" />
+            <circle cx="19" cy="12" r="1.8" />
+          </svg>
+        </button>
+      </header>
 
-    <label>課號清單 <span class="hint">（一行一個，可從網站匯出貼上）</span></label>
-    <textarea id="codes" placeholder="A1234&#10;B3550&#10;C1280A"></textarea>
+      <section class="clock-card" aria-label="當前時間">
+        <div class="eyebrow-row">
+          <span class="live-dot"></span><span>當前時間</span
+          ><span id="timeSource" class="time-source">本機時間</span>
+        </div>
+        <div id="currentTime" class="current-time">--:--:--</div>
+        <div id="currentDate" class="current-date">---- 年 -- 月 -- 日</div>
+      </section>
 
-    <label>排定送出時間</label>
-    <input type="datetime-local" id="fireAt" step="1" />
+      <section id="statusCard" class="status-card is-idle" aria-live="polite">
+        <span class="status-icon" aria-hidden="true"
+          ><svg viewBox="0 0 24 24">
+            <path
+              d="M12 8v4l2.7 1.7M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+            /></svg
+        ></span>
+        <div class="status-copy">
+          <strong id="statusTitle">尚未設定搶課</strong
+          ><span id="statusDetail">新增課程並設定送出時間</span>
+        </div>
+        <span id="countdown" class="countdown"></span>
+      </section>
 
-    <div class="row">
-      <div>
-        <label>重試間隔(秒)</label>
-        <input type="number" id="retrySec" value="1.5" step="0.5" min="0.5" />
+      <button id="start" class="primary-action" type="button">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="m13 2-8 12h7l-1 8 8-12h-7l1-8Z" /></svg
+        ><span>開始搶課</span>
+      </button>
+
+      <div class="quick-actions">
+        <button id="openCourses" class="quick-action" type="button">
+          <span class="quick-icon"
+            ><svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 5v14M5 12h14" /></svg
+          ></span>
+          <span class="quick-copy"
+            ><strong>新增課程</strong
+            ><small id="courseSummary">尚未新增</small></span
+          >
+          <svg class="chevron" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="m9 18 6-6-6-6" />
+          </svg>
+        </button>
+        <button id="openTime" class="quick-action" type="button">
+          <span class="quick-icon"
+            ><svg viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                d="M7 3v3m10-3v3M4 9h16M5 5h14a1 1 0 0 1 1 1v14H4V6a1 1 0 0 1 1-1Z"
+              /></svg
+          ></span>
+          <span class="quick-copy"
+            ><strong>設定時間</strong
+            ><small id="timeSummary">尚未設定</small></span
+          >
+          <svg class="chevron" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="m9 18 6-6-6-6" />
+          </svg>
+        </button>
       </div>
-      <div>
-        <label>重試上限(次)</label>
-        <input type="number" id="maxRetries" value="8" min="1" max="30" />
+      <p class="footer-note"><span></span>送出前請保持大同選課系統登入</p>
+    </main>
+
+    <div id="backdrop" class="backdrop" hidden></div>
+
+    <section
+      id="courseSheet"
+      class="sheet"
+      aria-hidden="true"
+      aria-labelledby="courseTitle"
+    >
+      <div class="sheet-handle"></div>
+      <header class="sheet-header">
+        <div>
+          <p class="sheet-kicker">COURSES</p>
+          <h2 id="courseTitle">新增課程</h2>
+        </div>
+        <button class="icon-button close-sheet" type="button" aria-label="關閉">
+          <svg viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18" /></svg>
+        </button>
+      </header>
+      <label class="field-label" for="codes"
+        >課號清單 <span>一行一個，每 5 門一批</span></label
+      >
+      <textarea id="codes" placeholder="G0040A&#10;G0041B&#10;G0042"></textarea>
+      <div class="input-meta">
+        <span>可直接貼上網站匯出的課號</span
+        ><strong id="courseCount">0 門課</strong>
       </div>
-    </div>
+      <button id="saveCourses" class="sheet-primary" type="button">
+        儲存課程
+      </button>
+    </section>
 
-    <div class="btns">
-      <button id="save">排程</button>
-      <button id="cancel" class="secondary">取消排程</button>
-    </div>
-    <button id="testNow" class="secondary" style="width: 100%">立即送出一次（測試）</button>
+    <section
+      id="timeSheet"
+      class="sheet sheet-tall"
+      aria-hidden="true"
+      aria-labelledby="timeTitle"
+    >
+      <div class="sheet-handle"></div>
+      <header class="sheet-header">
+        <div>
+          <p class="sheet-kicker">SCHEDULE</p>
+          <h2 id="timeTitle">設定搶課時間</h2>
+        </div>
+        <button class="icon-button close-sheet" type="button" aria-label="關閉">
+          <svg viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18" /></svg>
+        </button>
+      </header>
+      <div class="calendar-head">
+        <button
+          id="prevMonth"
+          class="mini-icon"
+          type="button"
+          aria-label="上個月"
+        >
+          <svg viewBox="0 0 24 24"><path d="m15 18-6-6 6-6" /></svg>
+        </button>
+        <strong id="calendarMonth">---- 年 -- 月</strong>
+        <button
+          id="nextMonth"
+          class="mini-icon"
+          type="button"
+          aria-label="下個月"
+        >
+          <svg viewBox="0 0 24 24"><path d="m9 18 6-6-6-6" /></svg>
+        </button>
+      </div>
+      <div class="weekdays" aria-hidden="true">
+        <span>日</span><span>一</span><span>二</span><span>三</span
+        ><span>四</span><span>五</span><span>六</span>
+      </div>
+      <div
+        id="calendarGrid"
+        class="calendar-grid"
+        role="grid"
+        aria-label="選擇日期"
+      ></div>
+      <div class="time-picker">
+        <span class="time-picker-label">送出時間</span>
+        <div class="time-parts">
+          <div class="time-part">
+            <button
+              type="button"
+              class="time-adjust"
+              data-unit="hour"
+              data-delta="1"
+              aria-label="增加小時"
+            >
+              ＋</button
+            ><strong id="pickHour">00</strong><small>時</small
+            ><button
+              type="button"
+              class="time-adjust"
+              data-unit="hour"
+              data-delta="-1"
+              aria-label="減少小時"
+            >
+              −
+            </button>
+          </div>
+          <span class="time-colon">:</span>
+          <div class="time-part">
+            <button
+              type="button"
+              class="time-adjust"
+              data-unit="minute"
+              data-delta="1"
+              aria-label="增加分鐘"
+            >
+              ＋</button
+            ><strong id="pickMinute">00</strong><small>分</small
+            ><button
+              type="button"
+              class="time-adjust"
+              data-unit="minute"
+              data-delta="-1"
+              aria-label="減少分鐘"
+            >
+              −
+            </button>
+          </div>
+          <span class="time-colon">:</span>
+          <div class="time-part">
+            <button
+              type="button"
+              class="time-adjust"
+              data-unit="second"
+              data-delta="1"
+              aria-label="增加秒數"
+            >
+              ＋</button
+            ><strong id="pickSecond">00</strong><small>秒</small
+            ><button
+              type="button"
+              class="time-adjust"
+              data-unit="second"
+              data-delta="-1"
+              aria-label="減少秒數"
+            >
+              −
+            </button>
+          </div>
+        </div>
+      </div>
+      <button id="saveTime" class="sheet-primary" type="button">
+        確認時間
+      </button>
+    </section>
 
-    <div id="status">尚未排程</div>
-    <div id="log"></div>
+    <aside
+      id="menuPanel"
+      class="menu-panel"
+      aria-hidden="true"
+      aria-labelledby="menuTitle"
+    >
+      <header class="sheet-header">
+        <div>
+          <p class="sheet-kicker">MORE</p>
+          <h2 id="menuTitle">更多設定</h2>
+        </div>
+        <button class="icon-button close-sheet" type="button" aria-label="關閉">
+          <svg viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18" /></svg>
+        </button>
+      </header>
+      <div class="settings-card">
+        <div class="setting-row">
+          <div><strong>重試間隔</strong><small>未開放時再次嘗試</small></div>
+          <div class="step-control">
+            <button type="button" data-setting="retry" data-delta="-0.5">
+              −</button
+            ><span id="retryValue">1.5 秒</span
+            ><button type="button" data-setting="retry" data-delta="0.5">
+              ＋
+            </button>
+          </div>
+        </div>
+        <div class="setting-row">
+          <div><strong>重試上限</strong><small>最多嘗試次數</small></div>
+          <div class="step-control">
+            <button type="button" data-setting="retries" data-delta="-1">
+              −</button
+            ><span id="retriesValue">8 次</span
+            ><button type="button" data-setting="retries" data-delta="1">
+              ＋
+            </button>
+          </div>
+        </div>
+      </div>
+      <button id="testNow" class="menu-action" type="button">
+        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7L8 5Z" /></svg
+        ><span
+          ><strong>立即測試送出</strong><small>會真的送出目前課號</small></span
+        >
+      </button>
+      <div class="log-section">
+        <div class="section-title">
+          <strong>執行紀錄</strong
+          ><button id="clearLog" type="button">清除</button>
+        </div>
+        <div id="log" class="log-box">目前沒有執行紀錄</div>
+      </div>
+      <button id="cancel" class="cancel-action" type="button">
+        取消目前排程
+      </button>
+      <p class="warning">
+        此工具會使用你的登入狀態送出課程，請遵守校方規範；實際結果以官方系統為準。
+      </p>
+    </aside>
 
-    <div class="warn">
-      ⚠ 送出前請確保已登入 cousel.ttu.edu.tw。此工具僅送出你自己排定的課，
-      採「準時送出＋失敗有限重試」，請勿濫用。實際結果以官方系統為準。
-    </div>
-
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
     <script src="popup.js"></script>
   </body>
 </html>

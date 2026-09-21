@@ -150,7 +150,35 @@ async function appendLog(msg) {
 // ---------- 訊息處理 ----------
 chrome.runtime.onMessage.addListener((m, sender, sendResponse) => {
   (async () => {
-    if (m.type === 'schedule') {
+    if (m.type === 'getServerOffset') {
+      sendResponse({ offsetMs: await getServerOffsetMs() });
+    } else if (m.type === 'importCoursesFromWeb') {
+      const codes = [
+        ...new Set(
+          (Array.isArray(m.codes) ? m.codes : [])
+            .filter((code) => typeof code === 'string')
+            .map((code) => code.trim())
+            .filter(Boolean),
+        ),
+      ].slice(0, 100);
+
+      if (!codes.length) {
+        sendResponse({ ok: false, error: '沒有可匯入的課號' });
+        return;
+      }
+
+      const stored = await chrome.storage.local.get(['draft', 'config']);
+      const previous = stored.draft || stored.config || {};
+      await chrome.storage.local.set({
+        draft: {
+          codes,
+          fireAtMs: previous.fireAtMs || null,
+          retryIntervalMs: previous.retryIntervalMs || 1500,
+          maxRetries: previous.maxRetries || 8,
+        },
+      });
+      sendResponse({ ok: true, count: codes.length });
+    } else if (m.type === 'schedule') {
       await chrome.storage.local.set({ config: m.config });
       await chrome.alarms.clearAll();
       const prepAt = Math.max(Date.now() + 100, m.config.fireAtMs - PREP_LEAD_MS);
